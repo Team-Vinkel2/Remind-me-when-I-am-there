@@ -1,6 +1,9 @@
 package com.vinkel.remindmewheniamthere;
 
 import android.app.Application;
+import com.vinkel.remindmewheniamthere.config.di.components.AppComponent;
+import com.vinkel.remindmewheniamthere.config.di.components.DaggerAppComponent;
+import com.vinkel.remindmewheniamthere.config.di.modules.AppModule;
 
 
 @SuppressWarnings("CheckStyle")
