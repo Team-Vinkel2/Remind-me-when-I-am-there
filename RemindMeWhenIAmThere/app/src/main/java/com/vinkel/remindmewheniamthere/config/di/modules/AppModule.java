@@ -1,7 +1,9 @@
-package com.vinkel.remindmewheniamthere;
+package com.vinkel.remindmewheniamthere.config.di.modules;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
+import com.vinkel.remindmewheniamthere.AppScope;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -20,5 +22,12 @@ public class AppModule {
   @AppScope
   Context providesApplicationContext() {
     return this.application;
+  }
+
+  @Provides
+  @Singleton
+  @AppScope
+  SharedPreferences providePrivateSharedPreferences() {
+    return this.application.getSharedPreferences(this.application.getPackageName(), Context.MODE_PRIVATE);
   }
 }
