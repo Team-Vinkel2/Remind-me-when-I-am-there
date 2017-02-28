@@ -55,6 +55,7 @@ public class AppModule {
     return RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
   }
 
+  @SuppressWarnings("CheckStyle")
   @Inject
   @Provides
   public IApplicationSettingsManager provideApplicationSettingsManager(

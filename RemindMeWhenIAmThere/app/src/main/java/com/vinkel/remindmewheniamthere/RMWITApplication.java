@@ -19,15 +19,13 @@ public class RMWITApplication extends Application {
     this.component = DaggerAppComponent.builder()
         .appModule(new AppModule(this))
         .build();
-
-    //component.inject(this);
   }
 
   public static RMWITApplication getInstance() {
     return instance;
   }
 
-  public AppComponent component() {
+  public AppComponent getComponent() {
     return component;
   }
 }

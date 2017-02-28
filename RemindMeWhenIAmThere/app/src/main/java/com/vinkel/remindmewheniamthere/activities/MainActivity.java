@@ -30,26 +30,11 @@ public class MainActivity extends AppCompatActivity {
       this.startActivity(introActivityIntent);
     }
 
-    /* Toast.makeText(this, "Max volume: " + applicationSettingsManager.getAlarmVolume(),
-    Toast.LENGTH_LONG)
-        .show();
-
-    Log.e("Settings-first", this.applicationSettingsManager.hashCode() + "");
-    Log.e("Settings-second", this.settingsManager2.hashCode() + "");
-
-
-    Log.e("TestSettings", this.applicationSettingsManager.getRingtoneUri().getPath());
-
-
-    Ringtone ringtone = RingtoneManager.getRingtone(this,
-    this.applicationSettingsManager.getRingtoneUri());
-    Log.e("Ringtone name" , ringtone.getTitle(this));*/
-
   }
 
   private void injectMembers() {
     ((RMWITApplication) this.getApplication())
-        .component()
+        .getComponent()
         .getActivityComponent(new ActivityModule(this, this.getFragmentManager()))
         .inject(this);
   }
