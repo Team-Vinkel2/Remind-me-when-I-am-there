@@ -24,4 +24,11 @@ public class IntentFactory implements IIntentFactory {
     intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
     return intent;
   }
+
+  @Override
+  public Intent getIntentWithNoAnimatedTransitionFlag(Class<? extends Activity> activityClass) {
+    Intent intent = this.getIntent(activityClass);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+    return intent;
+  }
 }

@@ -21,16 +21,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".RMWITApplication">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.IntroActivity"
+        <activity android:name=".views.intro.IntroActivity"
                   android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
                   android:label="@string/define_appintro" />
+        <activity android:name=".views.home.HomeActivity"/>
     </application>
 
 </manifest>

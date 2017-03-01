@@ -1,5 +1,6 @@
-package com.vinkel.remindmewheniamthere.activities;
+package com.vinkel.remindmewheniamthere.views.intro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import com.github.paolorotolo.appintro.AppIntro;
@@ -7,7 +8,9 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.vinkel.remindmewheniamthere.R;
 import com.vinkel.remindmewheniamthere.RMWITApplication;
 import com.vinkel.remindmewheniamthere.config.di.modules.ActivityModule;
+import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
 import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
+import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -23,6 +26,9 @@ public class IntroActivity extends AppIntro {
 
   @Inject
   public IApplicationSettingsManager applicationSettingsManager;
+
+  @Inject
+  public IIntentFactory intentFactory;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -92,13 +98,12 @@ public class IntroActivity extends AppIntro {
   }
 
   @Override
-  public void onBackPressed() {
-  }
-
-  @Override
   public void onDonePressed(Fragment currentFragment) {
     super.onDonePressed(currentFragment);
     this.applicationSettingsManager.setIsFirstLaunch(false);
+    Intent homeActivityIntent =
+        intentFactory.getIntentWithNoAnimatedTransitionFlag(HomeActivity.class);
+    this.startActivity(homeActivityIntent);
     this.finish();
   }
 

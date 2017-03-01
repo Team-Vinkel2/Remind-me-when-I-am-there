@@ -14,6 +14,7 @@ import javax.inject.Inject;
 public class ActivityModule {
   private final Activity activity;
   private final FragmentManager fragmentManager;
+  private IIntentFactory intentFactory;
 
   public ActivityModule(Activity activity, FragmentManager fragmentManager) {
     this.activity = activity;
@@ -39,6 +40,10 @@ public class ActivityModule {
   @Inject
   @Provides
   IIntentFactory provideIntentFactory(@ActivityContext Context context) {
-    return new IntentFactory(context);
+    if (this.intentFactory == null) {
+      this.intentFactory = new IntentFactory(context);
+    }
+
+    return this.intentFactory;
   }
 }

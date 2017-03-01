@@ -1,7 +1,5 @@
 package com.vinkel.remindmewheniamthere.views.base;
 
-public interface IView {
-  interface SampleView {
-    void helpMeImSuffering();
-  }
+public interface IView<T extends IPresenter> {
+  void setPresenter(T presenter);
 }
