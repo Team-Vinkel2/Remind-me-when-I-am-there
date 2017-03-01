@@ -110,7 +110,7 @@ public class IntroActivity extends AppIntro {
   private void injectMembers() {
     ((RMWITApplication) getApplication())
         .getComponent()
-        .getActivityComponent(new ActivityModule(this, this.getFragmentManager()))
+        .getActivityComponent(new ActivityModule(this, this.getSupportFragmentManager()))
         .inject(this);
   }
 

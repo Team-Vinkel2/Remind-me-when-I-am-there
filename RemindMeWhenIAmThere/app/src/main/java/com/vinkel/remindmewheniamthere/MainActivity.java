@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
   private void injectMembers() {
     ((RMWITApplication) getApplication())
         .getComponent()
-        .getActivityComponent(new ActivityModule(this, this.getFragmentManager()))
+        .getActivityComponent(new ActivityModule(this, this.getSupportFragmentManager()))
         .inject(this);
   }
 }

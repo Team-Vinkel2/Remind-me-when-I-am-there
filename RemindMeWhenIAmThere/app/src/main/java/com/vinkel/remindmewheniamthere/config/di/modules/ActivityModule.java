@@ -1,8 +1,8 @@
 package com.vinkel.remindmewheniamthere.config.di.modules;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import com.vinkel.remindmewheniamthere.config.di.annotations.ActivityContext;
 import com.vinkel.remindmewheniamthere.providers.IntentFactory;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
