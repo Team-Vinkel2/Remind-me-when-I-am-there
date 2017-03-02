@@ -32,6 +32,11 @@
                   android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
                   android:label="@string/define_appintro" />
         <activity android:name=".views.home.HomeActivity"/>
+
+        <meta-data android:name="DATABASE" android:value="remind_me_when_i_am_there.db" />
+        <meta-data android:name="VERSION" android:value="3" />
+        <meta-data android:name="QUERY_LOG" android:value="true" />
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.vinkel" />
     </application>
 
 </manifest>
