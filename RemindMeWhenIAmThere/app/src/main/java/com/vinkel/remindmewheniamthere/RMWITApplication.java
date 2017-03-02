@@ -1,6 +1,7 @@
 package com.vinkel.remindmewheniamthere;
 
 import android.app.Application;
+import com.orm.SugarContext;
 import com.vinkel.remindmewheniamthere.config.di.components.AppComponent;
 import com.vinkel.remindmewheniamthere.config.di.components.DaggerAppComponent;
 import com.vinkel.remindmewheniamthere.config.di.modules.AppModule;
@@ -16,6 +17,7 @@ public class RMWITApplication extends Application {
   public void onCreate() {
     super.onCreate();
     instance = this;
+    SugarContext.init(this);
     this.component = DaggerAppComponent.builder()
         .appModule(new AppModule(this))
         .build();
