@@ -14,7 +14,7 @@
         android:id="@+id/fragment_settings"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.vinkel.remindmewheniamthere.views.sign_up.SignUpView" />
+        android:name="com.vinkel.remindmewheniamthere.views.settings.SettingsView" />
 
 
 </LinearLayout>
