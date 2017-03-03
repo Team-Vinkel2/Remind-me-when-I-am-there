@@ -3,6 +3,7 @@ package com.vinkel.remindmewheniamthere.ui.components.drawer;
 
 import android.content.Context;
 
+import com.vinkel.remindmewheniamthere.config.di.annotations.ActivityContext;
 import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawerItem;
 import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawerItemFactory;
 
@@ -13,7 +14,7 @@ public class DrawerItemFactory implements IDrawerItemFactory {
     private final Context context;
 
     @Inject
-    public DrawerItemFactory(Context context) {
+    public DrawerItemFactory(@ActivityContext Context context) {
         this.context = context;
     }
 

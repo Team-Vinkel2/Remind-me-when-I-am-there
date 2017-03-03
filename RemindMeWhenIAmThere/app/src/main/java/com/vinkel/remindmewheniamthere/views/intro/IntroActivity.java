@@ -7,6 +7,7 @@ import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.vinkel.remindmewheniamthere.R;
 import com.vinkel.remindmewheniamthere.RMWITApplication;
+import com.vinkel.remindmewheniamthere.config.di.annotations.IntentFactoryForActivity;
 import com.vinkel.remindmewheniamthere.config.di.modules.ActivityModule;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
 import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
@@ -28,6 +29,7 @@ public class IntroActivity extends AppIntro {
   public IApplicationSettingsManager applicationSettingsManager;
 
   @Inject
+  @IntentFactoryForActivity
   public IIntentFactory intentFactory;
 
   @Override
@@ -110,7 +112,7 @@ public class IntroActivity extends AppIntro {
   private void injectMembers() {
     ((RMWITApplication) getApplication())
         .getComponent()
-        .getActivityComponent(new ActivityModule(this, this.getSupportFragmentManager()))
+        .getActivityComponent(new ActivityModule(this))
         .inject(this);
   }
 
