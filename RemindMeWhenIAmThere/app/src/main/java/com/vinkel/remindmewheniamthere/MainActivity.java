@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     if (applicationSettingsManager.getIsFirstLaunch()) {
       intent = intentFactory.getIntent(IntroActivity.class);
     } else {
-      intent = intentFactory.getIntent(SettingsActivity.class);
+      intent = intentFactory.getIntent(HomeActivity.class);
     }
     this.startActivity(intent);
     this.finish();
