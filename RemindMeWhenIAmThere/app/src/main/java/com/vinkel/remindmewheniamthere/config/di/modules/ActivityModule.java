@@ -13,8 +13,12 @@ import javax.inject.Inject;
 @Module
 public class ActivityModule {
   private final Activity activity;
-  private final FragmentManager fragmentManager;
+  private FragmentManager fragmentManager;
   private IIntentFactory intentFactory;
+
+  public ActivityModule(Activity activity) {
+    this.activity = activity;
+  }
 
   public ActivityModule(Activity activity, FragmentManager fragmentManager) {
     this.activity = activity;

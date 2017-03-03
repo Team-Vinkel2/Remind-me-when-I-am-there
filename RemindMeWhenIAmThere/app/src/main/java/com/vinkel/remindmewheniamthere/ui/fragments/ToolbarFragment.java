@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vinkel.remindmewheniamthere.R;
+import com.vinkel.remindmewheniamthere.RMWITApplication;
+import com.vinkel.remindmewheniamthere.config.di.modules.ActivityModule;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
 import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawer;
 import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawerItem;
@@ -146,5 +148,9 @@ public class ToolbarFragment extends Fragment implements IToolbar {
     }
 
     private void injectMembers() {
+        ((RMWITApplication) getActivity().getApplication())
+                .getComponent()
+                .getActivityComponent(new ActivityModule(getActivity()))
+                .inject(this);
     }
 }
