@@ -11,6 +11,11 @@ import java.util.List;
 
 public abstract class BaseDatabase<T> implements IBaseDatabase<T> {
 
+  protected static final String AND_OPERATOR = " and ";
+  protected static final String OR_OPERATOR = " or ";
+  protected static final String BOOLEAN_TRUE = "1";
+  protected static final String BOOLEAN_FALSE = "0";
+
   protected Class<? extends T> classSingle;
 
   public BaseDatabase(Class<? extends T> classSingle){
