@@ -1,21 +1,22 @@
-package com.vinkel.remindmewheniamthere.views.sign_in;
+package com.vinkel.remindmewheniamthere.views.settings;
 
-import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
 import com.vinkel.remindmewheniamthere.R;
 import com.vinkel.remindmewheniamthere.RMWITApplication;
 import com.vinkel.remindmewheniamthere.config.di.modules.ActivityModule;
+import com.vinkel.remindmewheniamthere.views.settings.base.ISettingsContracts;
 import com.vinkel.remindmewheniamthere.views.sign_in.base.ISignInContracts;
 
 import javax.inject.Inject;
 
-public class SignInActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     @Inject
-    ISignInContracts.Presenter signInPresenter;
-    ISignInContracts.View signInView;
+    ISettingsContracts.Presenter settingsPresenter;
+    ISettingsContracts.View settingsView;
 
     @Inject
     FragmentManager fragmentManager;
@@ -23,18 +24,18 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_settings);
         this.injectMembers();
-        this.signInPresenter.start();
+        this.settingsPresenter.start();
     }
 
     private void initializeViews() {
-        this.signInView = (ISignInContracts.View) fragmentManager.findFragmentById(R.id.fragment_sign_in);
+        this.settingsView = (ISettingsContracts.View) fragmentManager.findFragmentById(R.id.fragment_settings);
     }
 
     private void setup() {
-        signInPresenter.setView(signInView);
-        signInView.setPresenter(signInPresenter);
+        settingsPresenter.setView(settingsView);
+        settingsView.setPresenter(settingsPresenter);
     }
 
     private void injectMembers() {
@@ -43,4 +44,6 @@ public class SignInActivity extends AppCompatActivity {
                 .getActivityComponent(new ActivityModule(this, this.getSupportFragmentManager()))
                 .inject(this);
     }
+
+
 }

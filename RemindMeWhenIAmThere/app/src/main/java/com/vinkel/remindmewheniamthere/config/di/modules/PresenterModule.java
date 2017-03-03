@@ -1,8 +1,12 @@
 package com.vinkel.remindmewheniamthere.config.di.modules;
 
 import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
+import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderPresenter;
+import com.vinkel.remindmewheniamthere.views.add_reminder.base.IAddReminderContracts;
 import com.vinkel.remindmewheniamthere.views.home.HomePresenter;
 import com.vinkel.remindmewheniamthere.views.home.base.IHomeContracts;
+import com.vinkel.remindmewheniamthere.views.settings.SettingsPresenter;
+import com.vinkel.remindmewheniamthere.views.settings.base.ISettingsContracts;
 import com.vinkel.remindmewheniamthere.views.sign_in.SignInPresenter;
 import com.vinkel.remindmewheniamthere.views.sign_in.base.ISignInContracts;
 import com.vinkel.remindmewheniamthere.views.sign_up.SignUpPresenter;
@@ -33,4 +37,12 @@ public class PresenterModule {
   ISignInContracts.Presenter provideSignInPresenter (){
     return new SignInPresenter();
   }
+
+  @Inject
+  @Provides
+  IAddReminderContracts.Presenter provideAddReminderPresenter () { return new AddReminderPresenter(); }
+
+  @Inject
+  @Provides
+  ISettingsContracts.Presenter provideSettingsPresenter () { return  new SettingsPresenter(); }
 }

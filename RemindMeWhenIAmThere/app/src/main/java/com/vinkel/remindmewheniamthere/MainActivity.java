@@ -8,8 +8,10 @@ import com.vinkel.remindmewheniamthere.config.di.annotations.IntentFactoryForAct
 import com.vinkel.remindmewheniamthere.config.di.modules.ActivityModule;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
 import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
+import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderActivity;
 import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import com.vinkel.remindmewheniamthere.views.intro.IntroActivity;
+import com.vinkel.remindmewheniamthere.views.settings.SettingsActivity;
 
 import javax.inject.Inject;
 
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     if (applicationSettingsManager.getIsFirstLaunch()) {
       intent = intentFactory.getIntent(IntroActivity.class);
     } else {
-      intent = intentFactory.getIntent(HomeActivity.class);
+      intent = intentFactory.getIntent(SettingsActivity.class);
     }
     this.startActivity(intent);
     this.finish();
