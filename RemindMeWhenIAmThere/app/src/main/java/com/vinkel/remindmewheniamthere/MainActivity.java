@@ -9,8 +9,6 @@ import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
 import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
 import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import com.vinkel.remindmewheniamthere.views.intro.IntroActivity;
-import com.vinkel.remindmewheniamthere.views.sign_up.SignUpActivity;
-
 import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     if (applicationSettingsManager.getIsFirstLaunch()) {
       intent = intentFactory.getIntent(IntroActivity.class);
     } else {
-      intent = intentFactory.getIntent(SignUpActivity.class);
+      intent = intentFactory.getIntent(HomeActivity.class);
     }
     this.startActivity(intent);
     this.finish();
