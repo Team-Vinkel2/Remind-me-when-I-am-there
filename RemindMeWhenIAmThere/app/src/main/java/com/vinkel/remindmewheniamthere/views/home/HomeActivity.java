@@ -13,7 +13,7 @@ public class HomeActivity extends AppCompatActivity {
 
   @Inject
   IHomeContracts.Presenter homePresenter;
-  IHomeContracts.View homeView;
+  HomeView homeView;
 
   @Inject
   FragmentManager fragmentManager;
@@ -28,7 +28,13 @@ public class HomeActivity extends AppCompatActivity {
   }
 
   private void initializeViews() {
-    this.homeView = (IHomeContracts.View) fragmentManager.findFragmentById(R.id.fragment_home);
+    this.homeView = (HomeView) fragmentManager.findFragmentById(R.id.fragment_home);
+  }
+
+  @Override
+  protected void onStart() {
+    super.onStart();
+    this.homeView.setNavigationDrawer(R.layout.activity_home);
   }
 
   private void setup() {

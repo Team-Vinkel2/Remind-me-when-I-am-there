@@ -9,7 +9,7 @@ import android.view.View;
 
 public interface IToolbar {
 
-    void infalteMenu(@MenuRes int menuRes, Menu menu, MenuInflater menuInflater);
+    void inflateMenu(@MenuRes int menuRes, Menu menu, MenuInflater menuInflater);
 
     void setNavigationOnClickListener();
 

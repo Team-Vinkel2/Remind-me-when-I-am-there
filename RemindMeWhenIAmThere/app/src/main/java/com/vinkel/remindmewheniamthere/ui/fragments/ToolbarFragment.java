@@ -1,12 +1,12 @@
 package com.vinkel.remindmewheniamthere.ui.fragments;
 
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.MenuRes;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.vinkel.remindmewheniamthere.R;
 import com.vinkel.remindmewheniamthere.RMWITApplication;
 import com.vinkel.remindmewheniamthere.config.di.annotations.IntentFactoryForActivity;
@@ -29,7 +28,6 @@ import com.vinkel.remindmewheniamthere.ui.fragments.base.IToolbar;
 import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import com.vinkel.remindmewheniamthere.views.sign_in.SignInActivity;
 import com.vinkel.remindmewheniamthere.views.sign_up.SignUpActivity;
-
 import javax.inject.Inject;
 
 public class ToolbarFragment extends Fragment implements IToolbar {
@@ -68,7 +66,7 @@ public class ToolbarFragment extends Fragment implements IToolbar {
   }
 
   @Override
-  public void infalteMenu(@MenuRes int menuRes, Menu menu, MenuInflater menuInflater) {
+  public void inflateMenu(@MenuRes int menuRes, Menu menu, MenuInflater menuInflater) {
     super.onCreateOptionsMenu(menu, menuInflater);
     menu.clear();
     currentActivity.getMenuInflater().inflate(menuRes, menu);

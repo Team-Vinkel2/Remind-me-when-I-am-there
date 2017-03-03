@@ -2,16 +2,16 @@ package com.vinkel.remindmewheniamthere.views.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.vinkel.remindmewheniamthere.R;
+import com.vinkel.remindmewheniamthere.ui.fragments.ToolbarFragment;
 import com.vinkel.remindmewheniamthere.views.base.IPresenter;
 import com.vinkel.remindmewheniamthere.views.home.base.IHomeContracts;
 
-public class HomeView extends Fragment implements IHomeContracts.View {
+public class HomeView extends ToolbarFragment implements IHomeContracts.View {
 
   private IPresenter<IHomeContracts.View> presenter;
 
