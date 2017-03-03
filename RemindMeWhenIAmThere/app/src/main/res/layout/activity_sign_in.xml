@@ -10,4 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.vinkel.remindmewheniamthere.views.sign_in.SignInActivity">
 
+    <fragment
+        android:id="@+id/fragment_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.vinkel.remindmewheniamthere.views.sign_in.SignInView" />
+
 </RelativeLayout>
