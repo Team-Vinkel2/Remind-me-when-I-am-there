@@ -3,6 +3,9 @@ package com.vinkel.remindmewheniamthere.config.di.modules;
 import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
 import com.vinkel.remindmewheniamthere.views.home.HomePresenter;
 import com.vinkel.remindmewheniamthere.views.home.base.IHomeContracts;
+import com.vinkel.remindmewheniamthere.views.sign_up.SignUpPresenter;
+import com.vinkel.remindmewheniamthere.views.sign_up.base.ISignUpContracts;
+
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Inject;
@@ -15,5 +18,11 @@ public class PresenterModule {
   IHomeContracts.Presenter provideHomePresenter(
       IApplicationSettingsManager applicationSettingsManager) {
     return new HomePresenter(applicationSettingsManager);
+  }
+
+  @Inject
+  @Provides
+  ISignUpContracts.Presenter provideSignUpPresenter (){
+    return new SignUpPresenter();
   }
 }

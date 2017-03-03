@@ -5,6 +5,8 @@ import com.vinkel.remindmewheniamthere.config.di.modules.ActivityModule;
 import com.vinkel.remindmewheniamthere.config.di.modules.PresenterModule;
 import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import com.vinkel.remindmewheniamthere.views.intro.IntroActivity;
+import com.vinkel.remindmewheniamthere.views.sign_up.SignUpActivity;
+
 import dagger.Subcomponent;
 
 @Subcomponent(modules = {ActivityModule.class, PresenterModule.class})
@@ -15,4 +17,5 @@ public interface ActivityComponent {
 
   void inject(IntroActivity introActivity);
 
+  void inject(SignUpActivity signUpActivity);
 }
