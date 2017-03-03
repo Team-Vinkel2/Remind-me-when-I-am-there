@@ -11,6 +11,8 @@ public interface IToolbar {
 
     void infalteMenu(@MenuRes int menuRes, Menu menu, MenuInflater menuInflater);
 
+    void setNavigationOnClickListener();
+
     void setNavigationOnClickListener(View.OnClickListener onClickListener);
 
     void setNavigationDrawer(@LayoutRes long selectedItem);

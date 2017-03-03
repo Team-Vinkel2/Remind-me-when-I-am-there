@@ -2,10 +2,12 @@ package com.vinkel.remindmewheniamthere.ui.fragments;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.MenuRes;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,17 +20,16 @@ import android.view.ViewGroup;
 import com.vinkel.remindmewheniamthere.R;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
 import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawer;
+import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawerItem;
 import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawerItemFactory;
 import com.vinkel.remindmewheniamthere.ui.fragments.base.IToolbar;
+import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
+import com.vinkel.remindmewheniamthere.views.sign_in.SignInActivity;
+import com.vinkel.remindmewheniamthere.views.sign_up.SignUpActivity;
 
 import javax.inject.Inject;
 
 public class ToolbarFragment extends Fragment implements IToolbar {
-
-    private static final int NAV_HOME_ID = 0;
-    private static final int SIGN_IN_ID = 1;
-    private static final int SIGN_UP_ID = 2;
-    private static final int SIGN_OUT_ID = 1;
 
     @Inject
     IDrawer navigationDrawer;
@@ -52,17 +53,98 @@ public class ToolbarFragment extends Fragment implements IToolbar {
     }
 
     @Override
-    public void infalteMenu(@MenuRes int menuRes, Menu menu, MenuInflater menuInflater) {
+    public void onStart() {
+        super.onStart();
+        injectMembers();
 
+        currentActivity = (AppCompatActivity) getActivity();
+        toolbar = (Toolbar) currentActivity.findViewById(R.id.toolbar);
+        currentActivity.setSupportActionBar(toolbar);
+        actionBar = currentActivity.getSupportActionBar();
     }
 
     @Override
-    public void setNavigationOnClickListener(View.OnClickListener onClickListener) {
+    public void infalteMenu(@MenuRes int menuRes, Menu menu, MenuInflater menuInflater) {
+        super.onCreateOptionsMenu(menu, menuInflater);
+        menu.clear();
+        currentActivity.getMenuInflater().inflate(menuRes, menu);
+    }
 
+    public void setNavigationOnClickListener() {
+        setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavUtils.navigateUpFromSameTask(currentActivity);
+            }
+        });
+    }
+
+    @Override
+    public void setNavigationOnClickListener(View.OnClickListener clickListener) {
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationOnClickListener(clickListener);
     }
 
     @Override
     public void setNavigationDrawer(@LayoutRes long selectedItem) {
+        createDrawerBuilder();
 
+        final Intent homeIntent = intentFactory.getIntent(HomeActivity.class);
+        final Intent signUpIntent = intentFactory.getIntent(SignUpActivity.class);
+        final Intent signInIntent = intentFactory.getIntent(SignInActivity.class);
+
+        //Session
+
+        final IDrawerItem signIn = drawerItemFactory
+                .createPrimaryDrawerItem()
+                .withIdentifier(R.layout.activity_sign_in)
+                .withName(R.string.drawer_sign_in);
+
+        IDrawerItem signUp = drawerItemFactory
+                .createPrimaryDrawerItem()
+                .withIdentifier(R.layout.activity_sign_up)
+                .withName(R.string.drawer_sign_up);
+
+        navigationDrawer.withDrawerItems(
+                signIn,
+                signUp
+        )
+                .withOnDrawerItemClickListener(new IDrawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onClick(View view, int position) {
+                        switch (position) {
+                            case 0:
+                                startActivity(homeIntent);
+                                break;
+                            case 1:
+                                startActivity(signInIntent);
+                                break;
+                            case 2:
+                                startActivity(signUpIntent);
+                                break;
+                        }
+
+                        return false;
+                    }
+                });
+
+        navigationDrawer.withSelectedItem(selectedItem).build();
+    }
+
+    private void createDrawerBuilder() {
+        IDrawerItem home = drawerItemFactory
+                .createPrimaryDrawerItem()
+                .withIdentifier(R.layout.activity_home)
+                .withName(R.string.drawer_home);
+
+        navigationDrawer
+                .withToolbar(toolbar)
+                .withWidth(270)
+                .withDrawerItems(home, drawerItemFactory.createDividerDrawerItem());
+
+    }
+
+    private void injectMembers() {
     }
 }
