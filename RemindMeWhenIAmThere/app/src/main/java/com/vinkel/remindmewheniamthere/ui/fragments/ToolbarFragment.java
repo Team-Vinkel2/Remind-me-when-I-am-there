@@ -119,10 +119,10 @@ public class ToolbarFragment extends Fragment implements IToolbar {
               case 0:
                 startActivity(homeIntent);
                 break;
-              case 1:
+              case 2:
                 startActivity(signInIntent);
                 break;
-              case 2:
+              case 3:
                 startActivity(signUpIntent);
                 break;
             }

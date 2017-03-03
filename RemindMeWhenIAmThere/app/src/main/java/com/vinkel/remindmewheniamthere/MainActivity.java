@@ -12,6 +12,7 @@ import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderActivity;
 import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import com.vinkel.remindmewheniamthere.views.intro.IntroActivity;
 import com.vinkel.remindmewheniamthere.views.settings.SettingsActivity;
+import com.vinkel.remindmewheniamthere.views.sign_in.SignInActivity;
 
 import javax.inject.Inject;
 
