@@ -34,11 +34,22 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity android:name=".views.home.HomeActivity" />
         <activity android:name=".views.sign_up.SignUpActivity" />
-        <activity android:name=".views.sign_in.SignInActivity"></activity>
-        <meta-data android:name="DATABASE" android:value="remind_me_when_i_am_there.db" />
-        <meta-data android:name="VERSION" android:value="3" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.vinkel" />
+        <activity android:name=".views.sign_in.SignInActivity" />
+
+        <meta-data
+            android:name="DATABASE"
+            android:value="remind_me_when_i_am_there.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="3" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.vinkel" />
+
+        <activity android:name=".views.settings.SettingsActivity"></activity>
     </application>
 
 </manifest>
