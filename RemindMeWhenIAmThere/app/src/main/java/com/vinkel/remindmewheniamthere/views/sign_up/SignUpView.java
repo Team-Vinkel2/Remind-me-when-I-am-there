@@ -1,13 +1,12 @@
 package com.vinkel.remindmewheniamthere.views.sign_up;
 
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.vinkel.remindmewheniamthere.R;
 import com.vinkel.remindmewheniamthere.views.base.IPresenter;
 import com.vinkel.remindmewheniamthere.views.sign_up.base.ISignUpContracts;

@@ -31,7 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void initializeViews() {
-        this.signUpView = (ISignUpContracts.View) this.getFragmentManager().findFragmentById(R.id.fragment_sign_up);
+        this.signUpView = (ISignUpContracts.View) fragmentManger.findFragmentById(R.id.fragment_sign_up);
     }
 
     private void setup() {
