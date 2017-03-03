@@ -36,9 +36,6 @@ public class BootReceiver extends BroadcastReceiver{
     }
     this.injectMembers();
 
-    Log.e("KUR", Boolean.toString(reminderDatabase == null) + " " + reminderDatabase.toString());
-    Log.e("KUR", Boolean.toString(reminderManager == null) + " " + reminderManager.toString());
-
     reminderDatabase.getActiveReminders()
         .observeOn(Schedulers.io())
         .subscribe(new Consumer<List<IReminder>>() {
@@ -47,12 +44,6 @@ public class BootReceiver extends BroadcastReceiver{
               for (IReminder reminder: activeReminders) {
                 if(reminder.getDateString() == null) {
                   // Start location service
-                  continue;
-                }
-
-                String message = String.format("%d, %s, %s, %s", reminder.getId(), reminder.getTitle(), reminder.getContent(), Boolean.toString(reminder.getIsActive()));
-                Log.i("KUR", message);
-                if (reminder.getIsActive()) {
                   continue;
                 }
 
