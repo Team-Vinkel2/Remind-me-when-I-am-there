@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome_slide_title">Welcome, stranger!</string>
+    <string name="welcome_slide_message"> Thank you for downloading our app! Just let us show you a few things before you get goin\'.</string>
+    <string name="offline_mode_slide_title">What can you do?</string>
+    <string name="offline_mode_slide_content"> In offline mode you can enjoy a standard app for reminders. \n
+        Except you can set them for a specific location.</string>
+    <string name="online_mode_slide_title">Online mode?\nWhat\'s that?</string>
+    <string name="online_mode_slide_content">That means you have an account in our app(if you register).
+        You can have friends and set reminders for them. Oh and also…</string>
+    <string name="online_mode_sync_slide_title">Sync</string>
+    <string name="online_mode_sync_slide_content">Your reminders are backed up.
+        This means that wherever you go, you can download our app, sign in and they will automatically be there for you.</string>
+    <string name="permissions_slide_title">One last thing…</string>
+    <string name="permissions_slide_content">In order to use all of this, we need permissions.
+        Both from you and the operating system. If you don\'t mind, accept all of them, but if you don\'t want to, feel free to reject them.
+        However, if you do so, not all features will be working</string>
+    <string name="end_slide_title">That\'s it!</string>
+    <string name="end_slide_content">Why are you still reading? Go!</string>
+</resources>
