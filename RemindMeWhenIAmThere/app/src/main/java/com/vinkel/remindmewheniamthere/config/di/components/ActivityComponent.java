@@ -8,6 +8,7 @@ import com.vinkel.remindmewheniamthere.ui.fragments.ToolbarFragment;
 import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import com.vinkel.remindmewheniamthere.views.home.base.IHomeContracts;
 import com.vinkel.remindmewheniamthere.views.intro.IntroActivity;
+import com.vinkel.remindmewheniamthere.views.settings.SettingsActivity;
 import com.vinkel.remindmewheniamthere.views.sign_in.SignInActivity;
 import com.vinkel.remindmewheniamthere.views.sign_up.SignUpActivity;
 
@@ -26,4 +27,6 @@ public interface ActivityComponent {
   void inject(SignInActivity signInActivity);
 
   void inject(ToolbarFragment toolbarFragment);
+
+  void inject(SettingsActivity settingsActivity);
 }
