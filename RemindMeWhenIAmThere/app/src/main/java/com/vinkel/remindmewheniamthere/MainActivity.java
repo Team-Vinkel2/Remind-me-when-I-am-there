@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import com.vinkel.remindmewheniamthere.config.di.annotations.IntentFactoryForActivity;
 import com.vinkel.remindmewheniamthere.config.di.modules.ActivityModule;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
 import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
@@ -15,6 +16,7 @@ import javax.inject.Inject;
 public class MainActivity extends AppCompatActivity {
 
   @Inject
+  @IntentFactoryForActivity
   public IIntentFactory intentFactory;
 
   @Inject

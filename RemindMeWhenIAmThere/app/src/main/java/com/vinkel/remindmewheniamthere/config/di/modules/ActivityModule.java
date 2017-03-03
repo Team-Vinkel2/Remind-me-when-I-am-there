@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import com.vinkel.remindmewheniamthere.config.di.annotations.ActivityContext;
+import com.vinkel.remindmewheniamthere.config.di.annotations.IntentFactoryForActivity;
 import com.vinkel.remindmewheniamthere.providers.IntentFactory;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
 import dagger.Module;
@@ -43,6 +44,7 @@ public class ActivityModule {
 
   @Inject
   @Provides
+  @IntentFactoryForActivity
   IIntentFactory provideIntentFactory(@ActivityContext Context context) {
     if (this.intentFactory == null) {
       this.intentFactory = new IntentFactory(context);
