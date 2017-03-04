@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.LocationManager;
 import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -59,6 +60,11 @@ public class AppModule {
   }
 
   @Provides
+  LocationManager provideLocationManager() {
+    return (LocationManager) this.application.getSystemService(Context.LOCATION_SERVICE);
+  }
+
+  @Provides
   @Named("defaultRingtoneUri")
   Uri provideDefaultRingtoneUri() {
     return RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
@@ -89,4 +95,5 @@ public class AppModule {
 
     return this.intentFactory;
   }
+
 }

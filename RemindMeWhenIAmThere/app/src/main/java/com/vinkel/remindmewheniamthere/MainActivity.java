@@ -4,16 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import com.vinkel.remindmewheniamthere.background.services.LocationReminderWatcherService;
 import com.vinkel.remindmewheniamthere.config.di.annotations.IntentFactoryForActivity;
 import com.vinkel.remindmewheniamthere.config.di.modules.ActivityModule;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
 import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
-import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderActivity;
 import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import com.vinkel.remindmewheniamthere.views.intro.IntroActivity;
-import com.vinkel.remindmewheniamthere.views.settings.SettingsActivity;
-import com.vinkel.remindmewheniamthere.views.sign_in.SignInActivity;
-
 import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
       intent = intentFactory.getIntent(HomeActivity.class);
     }
     this.startActivity(intent);
+    Intent serviceIntent = new Intent(this.getApplicationContext(), LocationReminderWatcherService.class);
+    this.getApplicationContext().startService(serviceIntent);
     this.finish();
   }
 
