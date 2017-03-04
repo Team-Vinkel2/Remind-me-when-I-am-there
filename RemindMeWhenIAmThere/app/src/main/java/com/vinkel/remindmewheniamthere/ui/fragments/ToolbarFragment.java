@@ -25,7 +25,9 @@ import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawer;
 import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawerItem;
 import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawerItemFactory;
 import com.vinkel.remindmewheniamthere.ui.fragments.base.IToolbar;
+import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderActivity;
 import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
+import com.vinkel.remindmewheniamthere.views.settings.SettingsActivity;
 import com.vinkel.remindmewheniamthere.views.sign_in.SignInActivity;
 import com.vinkel.remindmewheniamthere.views.sign_up.SignUpActivity;
 import javax.inject.Inject;
@@ -95,6 +97,8 @@ public class ToolbarFragment extends Fragment implements IToolbar {
     final Intent homeIntent = intentFactory.getIntent(HomeActivity.class);
     final Intent signUpIntent = intentFactory.getIntent(SignUpActivity.class);
     final Intent signInIntent = intentFactory.getIntent(SignInActivity.class);
+    final Intent addReminderIntent = intentFactory.getIntent(AddReminderActivity.class);
+    final Intent settingsIntent = intentFactory.getIntent(SettingsActivity.class);
 
     //Session
 
@@ -119,10 +123,16 @@ public class ToolbarFragment extends Fragment implements IToolbar {
               case 0:
                 startActivity(homeIntent);
                 break;
-              case 1:
+              case 2:
+                startActivity(settingsIntent);
+                break;
+              case 3:
+                startActivity(addReminderIntent);
+                break;
+              case 5:
                 startActivity(signInIntent);
                 break;
-              case 2:
+              case 6:
                 startActivity(signUpIntent);
                 break;
             }
@@ -140,10 +150,20 @@ public class ToolbarFragment extends Fragment implements IToolbar {
         .withIdentifier(R.layout.activity_home)
         .withName(R.string.drawer_home);
 
+    IDrawerItem settings = drawerItemFactory
+            .createPrimaryDrawerItem()
+            .withIdentifier(R.layout.activity_settings)
+            .withName(R.string.drawer_settings);
+
+    IDrawerItem addReminder = drawerItemFactory
+            .createPrimaryDrawerItem()
+            .withIdentifier(R.layout.activity_add_reminder)
+            .withName(R.string.drawer_add_reminder);
+
     navigationDrawer
         .withToolbar(toolbar)
         .withWidth(270)
-        .withDrawerItems(home, drawerItemFactory.createDividerDrawerItem());
+        .withDrawerItems(home, drawerItemFactory.createDividerDrawerItem(), addReminder, settings, drawerItemFactory.createDividerDrawerItem());
 
   }
 
