@@ -25,9 +25,13 @@ public class AddReminderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
+        this.injectMembers();
+        this.initializeViews();
+        this.setup();
+        this.addReminderPresenter.start();
     }
 
-    private void intializeViews() {
+    private void initializeViews() {
         this.addReminderView = (IAddReminderContracts.View) fragmentManager.findFragmentById(R.id.fragment_add_reminder);
     }
 

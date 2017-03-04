@@ -163,7 +163,7 @@ public class ToolbarFragment extends Fragment implements IToolbar {
     navigationDrawer
         .withToolbar(toolbar)
         .withWidth(270)
-        .withDrawerItems(home, drawerItemFactory.createDividerDrawerItem(), addReminder, settings, drawerItemFactory.createDividerDrawerItem());
+        .withDrawerItems(home, drawerItemFactory.createDividerDrawerItem(), settings, addReminder, drawerItemFactory.createDividerDrawerItem());
 
   }
 

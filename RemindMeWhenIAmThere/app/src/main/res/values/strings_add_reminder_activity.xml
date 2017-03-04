@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="radio_me">For Me</string>
+    <string name="radio_other">For other user</string>
+    <string name="hint_edit_text">Nz kakvo trqbva da pishe</string>
+</resources>
