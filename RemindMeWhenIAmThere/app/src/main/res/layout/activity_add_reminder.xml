@@ -14,6 +14,6 @@
         android:id="@+id/fragment_add_reminder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.vinkel.remindmewheniamthere.views.settings.SettingsView" />
+        android:name="com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderView" />
 
 </LinearLayout>

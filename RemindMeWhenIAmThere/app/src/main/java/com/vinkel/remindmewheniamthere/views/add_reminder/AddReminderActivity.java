@@ -1,9 +1,8 @@
 package com.vinkel.remindmewheniamthere.views.add_reminder;
 
-import android.app.Fragment;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.vinkel.remindmewheniamthere.R;
 import com.vinkel.remindmewheniamthere.RMWITApplication;
