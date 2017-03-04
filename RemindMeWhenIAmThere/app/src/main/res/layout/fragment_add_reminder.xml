@@ -1,32 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="15px"
-    android:layout_marginLeft="15px"
-    android:layout_marginRight="15px">
-
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <RadioButton android:id="@+id/radio_me"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/radio_me"
-            android:onClick="onRadioButtonClicked"/>
-        <RadioButton android:id="@+id/radio_other"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/radio_other"
-            android:onClick="onRadioButtonClicked"/>
-    </RadioGroup>
-
-    <EditText android:id="@+id/edit_message"
+    android:layout_height="match_parent">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_edit_text" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="15px"
+        android:layout_marginLeft="15px"
+        android:layout_marginRight="15px"
+        android:weightSum="1">
 
-</LinearLayout>
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RadioButton android:id="@+id/radio_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_me"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/radio_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_other"
+                android:onClick="onRadioButtonClicked"/>
+        </RadioGroup>
+
+        <EditText android:id="@+id/smth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_edit" />
+
+        <EditText android:id="@+id/add_reminder_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_title" />
+
+        <EditText android:id="@+id/add_reminder_Content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_content"
+            android:layout_weight="0.18" />
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+        </DatePicker>
+
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+        </TimePicker>
+
+    </LinearLayout>
+ </ScrollView>

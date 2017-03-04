@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.AbstractBadgeableDrawerItem;
 import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawer;
@@ -43,6 +44,12 @@ public class Drawer implements IDrawer {
   @Override
   public IDrawer withWidth(int width) {
     drawerBuilder.withDrawerWidthDp(width);
+    return this;
+  }
+
+  @Override
+  public IDrawer withAccountHeader(AccountHeader header) {
+    drawerBuilder.withAccountHeader(header);
     return this;
   }
 

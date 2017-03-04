@@ -16,6 +16,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.vinkel.remindmewheniamthere.R;
 import com.vinkel.remindmewheniamthere.RMWITApplication;
 import com.vinkel.remindmewheniamthere.config.di.annotations.IntentFactoryForActivity;
@@ -120,19 +124,19 @@ public class ToolbarFragment extends Fragment implements IToolbar {
           @Override
           public boolean onClick(View view, int position) {
             switch (position) {
-              case 0:
+              case 1:
                 startActivity(homeIntent);
                 break;
-              case 2:
+              case 3:
                 startActivity(settingsIntent);
                 break;
-              case 3:
+              case 4:
                 startActivity(addReminderIntent);
                 break;
-              case 5:
+              case 6:
                 startActivity(signInIntent);
                 break;
-              case 6:
+              case 7:
                 startActivity(signUpIntent);
                 break;
             }
@@ -145,6 +149,12 @@ public class ToolbarFragment extends Fragment implements IToolbar {
   }
 
   private void createDrawerBuilder() {
+    AccountHeader accountHeader = new AccountHeaderBuilder()
+            .withActivity(currentActivity)
+            .addProfiles(
+                    new ProfileDrawerItem().withName("Injecrva se ot nqkude").withEmail("I toq cheshit shushto@abv.bg")
+            ).build();
+
     IDrawerItem home = drawerItemFactory
         .createPrimaryDrawerItem()
         .withIdentifier(R.layout.activity_home)
@@ -163,6 +173,7 @@ public class ToolbarFragment extends Fragment implements IToolbar {
     navigationDrawer
         .withToolbar(toolbar)
         .withWidth(270)
+            .withAccountHeader(accountHeader)
         .withDrawerItems(home, drawerItemFactory.createDividerDrawerItem(), settings, addReminder, drawerItemFactory.createDividerDrawerItem());
 
   }
