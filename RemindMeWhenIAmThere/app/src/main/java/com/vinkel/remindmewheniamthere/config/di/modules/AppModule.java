@@ -1,5 +1,6 @@
 package com.vinkel.remindmewheniamthere.config.di.modules;
 
+import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.Application;
 import android.content.Context;
@@ -57,6 +58,11 @@ public class AppModule {
   @Provides
   AlarmManager provideAlarmManager() {
     return (AlarmManager) this.application.getSystemService(Context.ALARM_SERVICE);
+  }
+
+  @Provides
+  ActivityManager provideActivityManager() {
+    return (ActivityManager) this.application.getSystemService(Context.ACTIVITY_SERVICE);
   }
 
   @Provides

@@ -5,5 +5,7 @@ import io.reactivex.Observable;
 import java.util.List;
 
 public interface IReminderDatabase extends IBaseDatabase<IReminder> {
-  public Observable<List<IReminder>> getActiveReminders();
+  Observable<List<IReminder>> getActiveReminders();
+
+  Observable<List<IReminder>> getActiveLocationReminders();
 }

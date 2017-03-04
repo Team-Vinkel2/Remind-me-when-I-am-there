@@ -29,13 +29,13 @@ public interface IReminder {
 
   void setDateString(String dateString);
 
-  float getLongitude();
+  double getLongitude();
 
-  void setLongitude(float longitude);
+  void setLongitude(double longitude);
 
-  float getLatitude();
+  double getLatitude();
 
-  void setLatitude(float latitude);
+  void setLatitude(double latitude);
 
   String getLocationName();
 

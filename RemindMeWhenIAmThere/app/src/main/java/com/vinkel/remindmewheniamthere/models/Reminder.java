@@ -13,8 +13,8 @@ public class Reminder implements IReminder {
   private String fromUser;
   private String toUser;
   private String dateString;
-  private float longitude;
-  private float latitude;
+  private double longitude;
+  private double latitude;
   private String locationName;
   private boolean isActive;
   private boolean isCompleted;
@@ -26,8 +26,8 @@ public class Reminder implements IReminder {
       String content,
       String toUser,
       String dateString,
-      float longitude,
-      float latitude,
+      double longitude,
+      double latitude,
       String locationName,
       boolean isActive) {
     this.title = title;
@@ -111,22 +111,22 @@ public class Reminder implements IReminder {
   }
 
   @Override
-  public float getLongitude() {
+  public double getLongitude() {
     return this.longitude;
   }
 
   @Override
-  public void setLongitude(float longitude) {
+  public void setLongitude(double longitude) {
     this.longitude = longitude;
   }
 
   @Override
-  public float getLatitude() {
+  public double getLatitude() {
     return this.latitude;
   }
 
   @Override
-  public void setLatitude(float latitude) {
+  public void setLatitude(double latitude) {
     this.latitude = latitude;
   }
 

@@ -24,7 +24,7 @@ public class LocationObserver implements ILocationObserver {
     this.activeLocationListeners = new TreeMap<>();
   }
 
-  public Observable<Location> getLocationObserver(final long minUpdateTime, final long minUpdateDistance, final String observerTag) {
+  public Observable<Location> getLocationObserver(final long minUpdateTime, final float minUpdateDistance, final String observerTag) {
     return Observable.create(new ObservableOnSubscribe<Location>() {
       @Override
       public void subscribe(final ObservableEmitter<Location> e) throws Exception {
@@ -61,6 +61,7 @@ public class LocationObserver implements ILocationObserver {
 
         try {
           locationManager.removeUpdates(activeLocationListeners.get(observerTag));
+          activeLocationListeners.remove(observerTag);
         } catch (SecurityException ex) {
           Log.i(TAG, "failed to remove location listners due to security exception", ex);
         } catch (Exception ex) {
