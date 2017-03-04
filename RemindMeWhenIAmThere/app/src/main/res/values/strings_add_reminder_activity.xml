@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="radio_me">For Me</string>
+    <string name="radio_other">For other user</string>
+    <string name="hint_edit">Nz kakvo trqbva da pishe</string>
+    <string name="hint_title">Reminder Title</string>
+    <string name="hint_content">Reminder Content</string>
+
+</resources>

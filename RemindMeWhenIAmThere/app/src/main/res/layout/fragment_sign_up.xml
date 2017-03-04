@@ -18,6 +18,20 @@
         android:layout_marginTop="10dp">
 
         <EditText
+            android:id="@+id/firstname"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="First Name"
+            android:inputType="textVisiblePassword|textNoSuggestions" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
             android:id="@+id/username"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

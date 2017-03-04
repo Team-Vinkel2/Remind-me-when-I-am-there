@@ -25,6 +25,8 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         this.injectMembers();
+        this.initializeViews();
+        this.setup();
         this.signInPresenter.start();
     }
 

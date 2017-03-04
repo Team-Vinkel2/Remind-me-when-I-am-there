@@ -1,9 +1,8 @@
 package com.vinkel.remindmewheniamthere.views.add_reminder;
 
-import android.app.Fragment;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.vinkel.remindmewheniamthere.R;
 import com.vinkel.remindmewheniamthere.RMWITApplication;
@@ -25,9 +24,13 @@ public class AddReminderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
+        this.injectMembers();
+        this.initializeViews();
+        this.setup();
+        this.addReminderPresenter.start();
     }
 
-    private void intializeViews() {
+    private void initializeViews() {
         this.addReminderView = (IAddReminderContracts.View) fragmentManager.findFragmentById(R.id.fragment_add_reminder);
     }
 

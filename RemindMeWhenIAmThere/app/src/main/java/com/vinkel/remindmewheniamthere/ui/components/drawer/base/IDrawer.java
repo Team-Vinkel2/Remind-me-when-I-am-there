@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.mikepenz.materialdrawer.AccountHeader;
+
 public interface IDrawer {
 
     IDrawer withDrawerItems(@NonNull IDrawerItem... drawerItems);
@@ -12,6 +14,8 @@ public interface IDrawer {
     IDrawer withSelectedItem(long identifier);
 
     IDrawer withWidth(int width);
+
+    IDrawer withAccountHeader(AccountHeader header);
 
     IDrawer withToolbar(@NonNull Toolbar toolbar);
 
