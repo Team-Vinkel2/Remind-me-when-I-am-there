@@ -9,7 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RadioGroup;
+import android.widget.EditText;
+import android.widget.RadioButton;
 
 import com.vinkel.remindmewheniamthere.R;
 import com.vinkel.remindmewheniamthere.ui.fragments.DatePickerDialogFragment;
@@ -21,9 +22,12 @@ public class AddReminderView extends Fragment implements IAddReminderContracts.V
 
     private IPresenter<IAddReminderContracts.View> presenter;
 
-    private RadioGroup radioGroup;
+    private RadioButton radioButtonLocation;
+    private RadioButton radioButtonDateTime;
     private Button datePickerButton;
     private Button timePickerButton;
+    private Button setLocationButton;
+    private EditText locationName;
 
     @Nullable
     @Override
@@ -38,18 +42,31 @@ public class AddReminderView extends Fragment implements IAddReminderContracts.V
     }
 
     public void prepareView(View view) {
-      radioGroup = (RadioGroup) view.findViewById(R.id.radiogroup_type_reminder);
       timePickerButton = (Button) view.findViewById(R.id.btn_open_time_picker);
       datePickerButton = (Button) view.findViewById(R.id.btn_open_date_picker);
+      radioButtonDateTime = (RadioButton) view.findViewById(R.id.radio_datetime);
+      radioButtonLocation = (RadioButton) view.findViewById(R.id.radio_location);
+      setLocationButton = (Button) view.findViewById(R.id.btn_set_location);
+      locationName = (EditText) view.findViewById(R.id.edittext_location);
 
-      radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+      radioButtonLocation.setOnClickListener(new Button.OnClickListener() {
         @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-          if(checkedId == 0) {
+        public void onClick(View v) {
+          datePickerButton.setVisibility(View.GONE);
+          timePickerButton.setVisibility(View.GONE);
+          setLocationButton.setVisibility(View.VISIBLE);
+          locationName.setVisibility(View.VISIBLE);
+        }
+      });
 
-          } else {
-
-          }
+      radioButtonDateTime.setOnClickListener(new Button.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          datePickerButton.setVisibility(View.VISIBLE);
+          timePickerButton.setVisibility(View.VISIBLE);
+          setLocationButton.setVisibility(View.GONE);
+          locationName.setVisibility(View.GONE);
         }
       });
 

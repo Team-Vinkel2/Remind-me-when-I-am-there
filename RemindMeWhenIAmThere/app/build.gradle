@@ -49,5 +49,7 @@ dependencies {
 
     compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
 
+    compile 'com.schibstedspain.android:leku:3.0.0'
+
 
 }

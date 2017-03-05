@@ -73,6 +73,28 @@
             android:id="@+id/btn_open_date_picker"
             android:text="Open Date Picker"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_set_location"
+            android:text="Set Location"
+            android:visibility="gone"/>
+
+        <EditText
+            android:id="@+id/edittext_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Location Name"
+            android:visibility="gone"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_add_reminder"
+            android:text="Add Reminder"/>
+
+
+
 
 
     </LinearLayout>
