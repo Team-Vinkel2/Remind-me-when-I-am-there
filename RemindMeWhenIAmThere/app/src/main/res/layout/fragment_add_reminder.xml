@@ -20,13 +20,11 @@
             <RadioButton android:id="@+id/radio_me"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/radio_me"
-                android:onClick="onRadioButtonClicked"/>
+                android:text="@string/radio_me"/>
             <RadioButton android:id="@+id/radio_other"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/radio_other"
-                android:onClick="onRadioButtonClicked"/>
+                android:text="@string/radio_other"/>
         </RadioGroup>
 
         <EditText android:id="@+id/smth"
