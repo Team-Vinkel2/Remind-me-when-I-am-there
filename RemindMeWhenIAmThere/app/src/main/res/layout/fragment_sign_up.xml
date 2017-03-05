@@ -69,11 +69,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
+        android:id="@+id/sign_up_btn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="#b45705"
         android:text="Sign Up"
-        android:textColor="#fff" />
+        android:textColor="#fff" />/>
 
 </LinearLayout>

@@ -7,10 +7,12 @@ import com.vinkel.remindmewheniamthere.utils.base.IRequster;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -53,6 +55,22 @@ public class Requester implements IRequster{
 
         RequestBody requestBody = bodyBuilder.build();
         return requestBody;
+    }
+
+    public Observable<IHttpResponse> post(final String url, final Map<String, String> body) {
+        return Observable.defer(new Callable<ObservableSource<? extends IHttpResponse>>() {
+            @Override
+            public ObservableSource<? extends IHttpResponse> call() throws Exception {
+                RequestBody requestBody = createBody(body);
+
+                Request request = new Request.Builder()
+                        .url(url)
+                        .post(requestBody)
+                        .build();
+
+                return createResponse(request);
+            }
+        });
     }
 
 }
