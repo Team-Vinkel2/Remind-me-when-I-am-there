@@ -5,6 +5,8 @@ import com.vinkel.remindmewheniamthere.models.base.IReminder;
 import com.vinkel.remindmewheniamthere.providers.base.IReminderFactory;
 
 public class ReminderFactory implements IReminderFactory {
+  private static final double DEFAULT_COORDS_VALUE = Double.MAX_VALUE - 100;
+
   @Override
   public IReminder getEmptyReminder() {
     return new Reminder();
@@ -16,15 +18,23 @@ public class ReminderFactory implements IReminderFactory {
       String content,
       String dateString) {
 
-    return new Reminder(title, content, null, dateString, -1, -1, null, true);
+    return new Reminder(
+        title,
+        content,
+        null,
+        dateString,
+        DEFAULT_COORDS_VALUE,
+        DEFAULT_COORDS_VALUE,
+        null,
+        true);
   }
 
   @Override
   public IReminder getLocalLocationReminder(
       String title,
       String content,
-      float longitude,
-      float latitude,
+      double longitude,
+      double latitude,
       String locationName) {
 
     return new Reminder(
@@ -50,8 +60,8 @@ public class ReminderFactory implements IReminderFactory {
         content,
         toUserUsername,
         dateString,
-        -1,
-        -1,
+        DEFAULT_COORDS_VALUE,
+        DEFAULT_COORDS_VALUE,
         null,
         false);
   }
@@ -60,8 +70,8 @@ public class ReminderFactory implements IReminderFactory {
   public IReminder getLocationReminderForOtherUser(
       String title,
       String content,
-      float longitude,
-      float latitude,
+      double longitude,
+      double latitude,
       String locationName,
       String toUserUsername) {
 

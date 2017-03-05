@@ -31,6 +31,8 @@
         <activity android:name=".views.sign_up.SignUpActivity" />
         <activity android:name=".views.sign_in.SignInActivity" />
         <activity android:name=".views.settings.SettingsActivity" />
+        <activity android:name=".views.reminder_poup.ReminderPopupActivity" />
+        <activity android:name=".views.add_reminder.AddReminderActivity"/>
 
         <meta-data
             android:name="DATABASE"
@@ -45,7 +47,6 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.vinkel" />
 
-        <activity android:name=".views.reminder_poup.ReminderPopupActivity"></activity>
 
         <receiver
             android:name=".background.receivers.BootReceiver"
@@ -53,13 +54,17 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
         <receiver android:name=".background.receivers.ReminderReceiver" />
 
-        <activity android:name=".views.add_reminder.AddReminderActivity"></activity>
+        <service android:name=".background.services.LocationReminderWatcherService" />
+
+        <service android:name=".background.services.PreciseLocationReminderWatcherService" />
+
     </application>
 
 </manifest>

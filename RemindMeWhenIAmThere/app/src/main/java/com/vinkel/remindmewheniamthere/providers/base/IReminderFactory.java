@@ -11,8 +11,8 @@ public interface IReminderFactory {
   IReminder getLocalLocationReminder(
       String title,
       String content,
-      float longitude,
-      float latitude,
+      double longitude,
+      double latitude,
       String locationName);
 
   IReminder getDateReminderForOtherUser(
@@ -24,8 +24,8 @@ public interface IReminderFactory {
   IReminder getLocationReminderForOtherUser(
       String title,
       String content,
-      float longitude,
-      float latitude,
+      double longitude,
+      double latitude,
       String locationName,
       String toUserUsername);
 
