@@ -3,12 +3,15 @@ package com.vinkel.remindmewheniamthere.network;
 
 import com.vinkel.remindmewheniamthere.models.base.IUser;
 import com.vinkel.remindmewheniamthere.network.base.IUserData;
+import com.vinkel.remindmewheniamthere.utils.base.IJsonParser;
 import com.vinkel.remindmewheniamthere.utils.base.IRequster;
 
 import io.reactivex.Observable;
 
 public class UserData implements IUserData {
     private final IRequster httpRequester;
+    private final IJsonParser jsonParser;
+    private final
 
 
     @Override
