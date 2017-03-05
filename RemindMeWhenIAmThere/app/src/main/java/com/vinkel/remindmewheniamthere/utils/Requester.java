@@ -3,6 +3,7 @@ package com.vinkel.remindmewheniamthere.utils;
 
 import com.vinkel.remindmewheniamthere.providers.base.IHttpResponse;
 import com.vinkel.remindmewheniamthere.providers.base.IHttpResponseFactory;
+import com.vinkel.remindmewheniamthere.utils.base.IRequster;
 
 import java.io.IOException;
 import java.util.Map;
@@ -16,7 +17,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class Requester {
+public class Requester implements IRequster{
 
     private final IHttpResponseFactory responseFactory;
     private final OkHttpClient httpClient;
