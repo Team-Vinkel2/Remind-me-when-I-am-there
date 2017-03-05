@@ -45,19 +45,35 @@
             android:hint="@string/hint_content"
             android:layout_weight="0.18" />
 
-        <DatePicker
-            android:id="@+id/datePicker"
-            android:layout_width="wrap_content"
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
-        </DatePicker>
+            android:orientation="vertical"
+                    android:checkedButton="@+id/radio_datetime"
+            android:id="@+id/radiogroup_type_reminder">
+            <RadioButton android:id="@+id/radio_datetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_datetime"/>
+            <RadioButton android:id="@+id/radio_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_location"/>
+        </RadioGroup>
 
-        <TimePicker
-            android:id="@+id/timePicker"
-            android:layout_width="wrap_content"
+        <Button
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
-        </TimePicker>
+            android:id="@+id/btn_open_time_picker"
+            android:text="Open Time Picker"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_open_date_picker"
+            android:text="Open Date Picker"/>
+
+
 
     </LinearLayout>
  </ScrollView>
