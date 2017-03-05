@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 
 import com.vinkel.remindmewheniamthere.R;
+import com.vinkel.remindmewheniamthere.ui.fragments.DatePickerDialogFragment;
 import com.vinkel.remindmewheniamthere.ui.fragments.TimePickerDialogFragment;
 import com.vinkel.remindmewheniamthere.views.add_reminder.base.IAddReminderContracts;
 import com.vinkel.remindmewheniamthere.views.base.IPresenter;
@@ -57,6 +58,14 @@ public class AddReminderView extends Fragment implements IAddReminderContracts.V
         public void onClick(View v) {
           DialogFragment timePickerDialog = new TimePickerDialogFragment();
           timePickerDialog.show(getFragmentManager(), "Test");
+        }
+      });
+
+      datePickerButton.setOnClickListener(new Button.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          DialogFragment datePickerDialog = new DatePickerDialogFragment();
+          datePickerDialog.show(getFragmentManager(), "Test");
         }
       });
     }
