@@ -81,12 +81,19 @@ public class AppModule {
   @Provides
   public IApplicationSettingsManager provideApplicationSettingsManager(
       SharedPreferences sharedPreferences,
+      @AppContext Context appContext,
       @Named("defaultRingtoneUri") Uri defaultRingtoneUri,
       IUriParser uriParser,
       @Named("maxAudioVolume") int maxAudioVolume
   ) {
     if (this.applicationSettingsManagerInstance == null) {
-      this.applicationSettingsManagerInstance = new ApplicationSettingsManager(sharedPreferences, defaultRingtoneUri, uriParser, maxAudioVolume);
+      this.applicationSettingsManagerInstance =
+          new ApplicationSettingsManager(
+              sharedPreferences,
+              appContext,
+              defaultRingtoneUri,
+              uriParser,
+              maxAudioVolume);
     }
     return this.applicationSettingsManagerInstance;
   }

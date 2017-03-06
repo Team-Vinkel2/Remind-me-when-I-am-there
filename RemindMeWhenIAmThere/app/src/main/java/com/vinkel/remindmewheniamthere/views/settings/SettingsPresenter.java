@@ -1,10 +1,9 @@
 package com.vinkel.remindmewheniamthere.views.settings;
 
 
+import android.net.Uri;
 import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
-import com.vinkel.remindmewheniamthere.views.add_reminder.base.IAddReminderContracts;
 import com.vinkel.remindmewheniamthere.views.settings.base.ISettingsContracts;
-
 import javax.inject.Inject;
 
 public class SettingsPresenter implements ISettingsContracts.Presenter {
@@ -13,7 +12,8 @@ public class SettingsPresenter implements ISettingsContracts.Presenter {
   private IApplicationSettingsManager applicationSettingsManager;
 
   @Inject
-  public SettingsPresenter(IApplicationSettingsManager applicationSettingsManager) {
+  public SettingsPresenter(
+      IApplicationSettingsManager applicationSettingsManager) {
     this.applicationSettingsManager = applicationSettingsManager;
   }
 
@@ -24,11 +24,25 @@ public class SettingsPresenter implements ISettingsContracts.Presenter {
 
   @Override
   public void start() {
-
+    this.view.setMaxVolume(this.applicationSettingsManager.getMaxAudioVolume());
+    this.view.setCurrentVolume(this.applicationSettingsManager.getAlarmVolume());
+    this.loadRingtoneTitle();
   }
 
   @Override
   public void saveAudioVolume(int volume) {
     applicationSettingsManager.setAlarmVolume(volume);
+  }
+
+  @Override
+  public void saveRingtone(Uri ringtone) {
+    this.applicationSettingsManager
+        .setRingtoneUri(ringtone);
+    this.loadRingtoneTitle();
+  }
+
+  public void loadRingtoneTitle() {
+    String ringtoneName = this.applicationSettingsManager.getRingtoneTitle();
+    this.view.setCurrentRingtone(ringtoneName);
   }
 }

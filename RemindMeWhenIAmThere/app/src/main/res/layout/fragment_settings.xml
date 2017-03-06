@@ -7,8 +7,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Notification Volume"
-        android:textSize="24dp"/>
+        android:text="@string/alarm_volume"
+        android:textSize="24sp"/>
 
     <android.support.v7.widget.AppCompatSeekBar
         android:id="@+id/volume_bar"
@@ -19,13 +19,19 @@
         android:id="@+id/btn_select_ringtone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Set Reminder Ringtone"/>
+        android:text="@string/set_reminder_ringtone"/>
 
     <TextView
-        android:id="@+id/selected_ringtone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Current Selected Ringtone is:"/>
+        android:textSize="24sp"
+        android:text="@string/current_selected_ringtone_is"/>
+
+    <TextView
+        android:id="@+id/tv_current_ringtone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19sp"/>
 
 
 </LinearLayout>

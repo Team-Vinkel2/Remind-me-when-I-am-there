@@ -1,7 +1,11 @@
 package com.vinkel.remindmewheniamthere.utils;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.net.Uri;
+import com.vinkel.remindmewheniamthere.config.di.annotations.AppContext;
 import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
 import com.vinkel.remindmewheniamthere.utils.base.IUriParser;
 import java.util.Set;
@@ -20,17 +24,21 @@ public class ApplicationSettingsManager implements IApplicationSettingsManager {
   @SuppressWarnings("CheckStyle")
   public final Uri DEFAULT_RINGTONE_URI;
 
+  private final Context appContext;
+
   public SharedPreferences sharedPreferences;
   private final IUriParser uriParser;
 
   @Inject
   public ApplicationSettingsManager(
       SharedPreferences sharedPreferences,
+      @AppContext Context appContext,
       Uri defaultRingtoneUri,
       IUriParser uriParser,
       int maxAudioVolume) {
     this.MAX_AUDIO_VOLUME = maxAudioVolume;
     this.DEFAULT_RINGTONE_URI = defaultRingtoneUri;
+    this.appContext = appContext;
     this.uriParser = uriParser;
     this.sharedPreferences = sharedPreferences;
   }
@@ -57,7 +65,7 @@ public class ApplicationSettingsManager implements IApplicationSettingsManager {
 
   @Override
   public void setRingtoneUri(Uri ringtoneUri) {
-    String ringtoneUriString = ringtoneUri.getPath();
+    String ringtoneUriString = ringtoneUri.toString();
     this.addItemToSharedPreferences(RINGTONE_URI_KEY_NAME, ringtoneUriString);
   }
 
@@ -69,6 +77,22 @@ public class ApplicationSettingsManager implements IApplicationSettingsManager {
   @Override
   public void setIsFirstLaunch(boolean isFirstTimeLaunched) {
     this.addItemToSharedPreferences(IS_FIRST_LAUNCH_KEY_NAME, isFirstTimeLaunched);
+  }
+
+  @Override
+  public int getMaxAudioVolume() {
+    return this.MAX_AUDIO_VOLUME;
+  }
+
+  @Override
+  public Ringtone getRingtone() {
+    Uri ringtoneUri = this.getRingtoneUri();
+    return RingtoneManager.getRingtone(appContext, ringtoneUri);
+  }
+
+  @Override
+  public String getRingtoneTitle() {
+    return this.getRingtone().getTitle(appContext);
   }
 
   private void addItemToSharedPreferences(String key, Object value) {
