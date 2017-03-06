@@ -1,60 +1,134 @@
 package com.vinkel.remindmewheniamthere.network;
 
 
+import com.vinkel.remindmewheniamthere.config.base.IApiConfig;
+import com.vinkel.remindmewheniamthere.config.di.annotations.UserModel;
+import com.vinkel.remindmewheniamthere.config.di.annotations.UserModelArray;
 import com.vinkel.remindmewheniamthere.models.base.IUser;
+import com.vinkel.remindmewheniamthere.models.json.ApiError;
+import com.vinkel.remindmewheniamthere.network.base.BaseData;
 import com.vinkel.remindmewheniamthere.network.base.IUserData;
 import com.vinkel.remindmewheniamthere.providers.base.IHttpResponse;
 import com.vinkel.remindmewheniamthere.utils.base.IJsonParser;
-import com.vinkel.remindmewheniamthere.utils.base.IRequster;
-import com.vinkel.remindmewheniamthere.utils.base.IUserSession;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import com.vinkel.remindmewheniamthere.utils.base.IRequester;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 import java.util.Map;
-
+import java.util.TreeMap;
+import java.util.concurrent.Callable;
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
-import io.reactivex.functions.Function;
+public class UserData extends BaseData<IUser> implements IUserData {
 
-public class UserData implements IUserData {
-    private static String SIGN_UP_URL = "http://localhost:3001/register";
-    private final IRequster httpRequester;
-    private final IJsonParser jsonParser;
-    private final IUserSession userSession;
-    private final Type userModelType;
+  @Inject
+  public UserData(IRequester httpRequester,
+                  IApiConfig apiConfig,
+                  IJsonParser jsonParser,
+                  @UserModel Class<? extends IUser> classSingle,
+                  @UserModelArray Class<? extends IUser[]> classArray) {
+    super(httpRequester, apiConfig, jsonParser, classSingle, classArray);
+  }
 
-    @Inject
-    public  UserData(IRequster requster, IJsonParser jsonParser, IUserSession userSession, Type userModelType) {
-        this.httpRequester = requster;
-        this.jsonParser = jsonParser;
-        this.userSession = userSession;
-        this.userModelType = userModelType;
-    }
+  @Override
+  public Observable<IUser> signIn(final IUser user) {
+    return Observable.defer(new Callable<ObservableSource<? extends IHttpResponse>>() {
+      @Override
+      public ObservableSource<? extends IHttpResponse> call() throws Exception {
+        String userString = jsonParser.toJson(user);
 
+        return httpRequester.postJson(apiConfig.getLoginUrl(), userString, null);
+      }
+    })
+        .observeOn(Schedulers.io())
+        .flatMap(new Function<IHttpResponse, ObservableSource<IUser>>() {
+          @Override
+          public ObservableSource<IUser> apply(IHttpResponse response) throws Exception {
+            if (response.getCode() >= apiConfig.getApiErrorCode()) {
+              throw new ApiError(parseApiError(response.getBody()));
+            }
 
-    @Override
-    public Observable<IUser> signIn(String username, String password) {
-        return null;
-    }
+            IUser loggedInUser = jsonParser.fromJson(response.getBody(), classSingle);
+            return Observable.just(loggedInUser);
+          }
+        });
+  }
 
-    @Override
-    public Observable<IUser> signUp(String username, String password) {
-        Map<String, String> userData = new HashMap<>();
-        userData.put("username", username);
-        userData.put("password", password);
+  @Override
+  public Observable<IUser> signUp(final IUser user) {
+    return Observable.defer(new Callable<ObservableSource<? extends IHttpResponse>>() {
+      @Override
+      public ObservableSource<? extends IHttpResponse> call() throws Exception {
+        String userString = jsonParser.toJson(user);
 
-        return httpRequester
-                .post(SIGN_UP_URL, userData)
-                .map(new Function<IHttpResponse, IUser>() {
-                    @Override
-                    public IUser apply(IHttpResponse iHttpResponse) throws Exception {
-                        String responseBody = iHttpResponse.getBody().toString();
-                        String userJson = jsonParser.getDirectMember(responseBody, "result");
-                        IUser resultUser = jsonParser.fromJson(userJson, userModelType);
+        return httpRequester.postJson(apiConfig.getSignUpUrl(), userString, null);
+      }
+    })
+        .observeOn(Schedulers.io())
+        .flatMap(new Function<IHttpResponse, ObservableSource<IUser>>() {
+          @Override
+          public ObservableSource<IUser> apply(IHttpResponse response) throws Exception {
+            if (response.getCode() >= apiConfig.getApiErrorCode()) {
+              throw new ApiError(parseApiError(response.getBody()));
+            }
 
-                        return resultUser;
-                    }
-                });
-    }
+            IUser registeredUser = jsonParser.fromJson(response.getBody(), classSingle);
+            return Observable.just(registeredUser);
+          }
+        });
+  }
+
+  @Override
+  public Observable<String[]> getBuddies(final String authToken) {
+    return Observable.defer(new Callable<ObservableSource<? extends IHttpResponse>>() {
+      @Override
+      public ObservableSource<? extends IHttpResponse> call() throws Exception {
+
+        Map<String, String> headers = new TreeMap<>();
+        headers.put(apiConfig.getAuthHeaderName(), authToken);
+
+        return httpRequester.getJson(apiConfig.getGetMyBuddiesUrl(), headers);
+      }
+    })
+        .observeOn(Schedulers.io())
+        .flatMap(new Function<IHttpResponse, ObservableSource<String[]>>() {
+          @Override
+          public ObservableSource<String[]> apply(IHttpResponse response) throws Exception {
+            if (response.getCode() >= apiConfig.getApiErrorCode()) {
+              throw new ApiError(parseApiError(response.getBody()));
+            }
+
+            String[] users = jsonParser.fromJson(response.getBody(), String[].class);
+            return Observable.just(users);
+          }
+        });
+  }
+
+  @Override
+  public Observable<IUser[]> searchUsers(final String authToken, final String partialName) {
+    return Observable.defer(new Callable<ObservableSource<? extends IHttpResponse>>() {
+      @Override
+      public ObservableSource<? extends IHttpResponse> call() throws Exception {
+
+        Map<String, String> headers = new TreeMap<>();
+        headers.put(apiConfig.getAuthHeaderName(), authToken);
+
+        return httpRequester.getJson(apiConfig.getSearchUsersUrl(partialName), headers);
+      }
+    })
+        .observeOn(Schedulers.io())
+        .flatMap(new Function<IHttpResponse, ObservableSource<IUser[]>>() {
+          @Override
+          public ObservableSource<IUser[]> apply(IHttpResponse response) throws Exception {
+            if (response.getCode() >= apiConfig.getApiErrorCode()) {
+              throw new ApiError(parseApiError(response.getBody()));
+            }
+
+            IUser[] buddies = jsonParser.fromJson(response.getBody(), classArray);
+            return Observable.just(buddies);
+          }
+        });
+  }
+
 }

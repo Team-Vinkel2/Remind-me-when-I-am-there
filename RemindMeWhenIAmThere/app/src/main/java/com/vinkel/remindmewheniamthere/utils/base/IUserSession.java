@@ -2,11 +2,23 @@ package com.vinkel.remindmewheniamthere.utils.base;
 
 
 public interface IUserSession {
-    String getUsername();
+  String getUsername();
 
-    void setUsername(String username);
+  void setUsername(String username);
 
-    boolean isUserLoggedIn();
+  boolean isUserLoggedIn();
 
-    void clearSession();
+  void clearSession();
+
+  String getAuthToken();
+
+  void setAuthToken(String authToken);
+
+  String getEmail();
+
+  void setEmail(String email);
+
+  String getFirstName();
+
+  void setFirstName(String firstName);
 }

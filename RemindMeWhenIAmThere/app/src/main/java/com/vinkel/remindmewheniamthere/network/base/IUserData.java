@@ -7,7 +7,11 @@ import io.reactivex.Observable;
 
 public interface IUserData {
 
-    Observable<IUser> signIn(String username, String password);
+  Observable<IUser> signIn(IUser user);
 
-    Observable<IUser> signUp(String username, String password);
+  Observable<IUser> signUp(IUser user);
+
+  Observable<String[]> getBuddies(String authToken);
+
+  Observable<IUser[]> searchUsers(String authToken, String partialName);
 }

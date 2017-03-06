@@ -13,7 +13,7 @@ public class ObserverModule {
 
   @Provides
   ILocationObserver provideLocationObserver(LocationManager locationManager) {
-    if(this.locationObserver == null) {
+    if (this.locationObserver == null) {
       this.locationObserver = new LocationObserver(locationManager);
     }
 

@@ -5,10 +5,12 @@ import android.app.AlarmManager;
 import com.vinkel.remindmewheniamthere.config.di.annotations.UnscopedIntentFactory;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
 import com.vinkel.remindmewheniamthere.utils.DateTimeHelper;
+import com.vinkel.remindmewheniamthere.utils.JsonParser;
 import com.vinkel.remindmewheniamthere.utils.ReminderManager;
 import com.vinkel.remindmewheniamthere.utils.ServiceHelper;
 import com.vinkel.remindmewheniamthere.utils.UriUtils;
 import com.vinkel.remindmewheniamthere.utils.base.IDateTimeHelper;
+import com.vinkel.remindmewheniamthere.utils.base.IJsonParser;
 import com.vinkel.remindmewheniamthere.utils.base.IReminderManager;
 import com.vinkel.remindmewheniamthere.utils.base.IServiceHelper;
 import com.vinkel.remindmewheniamthere.utils.base.IUriParser;
@@ -49,5 +51,10 @@ public class UtilsModule {
   @Provides
   IDateTimeHelper provideDateTimeHelper() {
     return new DateTimeHelper();
+  }
+
+  @Provides
+  IJsonParser provideJsonParser() {
+    return new JsonParser();
   }
 }
