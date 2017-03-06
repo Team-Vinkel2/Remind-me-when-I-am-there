@@ -1,5 +1,6 @@
 package com.vinkel.remindmewheniamthere.config.di.modules;
 
+import com.vinkel.remindmewheniamthere.providers.base.IReminderFactory;
 import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
 import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderPresenter;
 import com.vinkel.remindmewheniamthere.views.add_reminder.base.IAddReminderContracts;
@@ -22,8 +23,8 @@ public class PresenterModule {
   @Inject
   @Provides
   IHomeContracts.Presenter provideHomePresenter(
-      IApplicationSettingsManager applicationSettingsManager) {
-    return new HomePresenter(applicationSettingsManager);
+      IApplicationSettingsManager applicationSettingsManager, IReminderFactory reminderFactory) {
+    return new HomePresenter(applicationSettingsManager, reminderFactory);
   }
 
   @Inject

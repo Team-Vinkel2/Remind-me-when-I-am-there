@@ -3,78 +3,87 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15px"
         android:layout_marginLeft="15px"
         android:layout_marginRight="15px"
+        android:layout_marginTop="15px"
+        android:orientation="vertical"
         android:weightSum="1">
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <RadioButton android:id="@+id/radio_me"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:checkedButton="@+id/radio_me"
+                    android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radio_me"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/radio_me"/>
-            <RadioButton android:id="@+id/radio_other"
+
+            <RadioButton
+                android:id="@+id/radio_other"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/radio_other"/>
+                android:text="@string/radio_other"
+                android:enabled="false"/>
         </RadioGroup>
 
-        <EditText android:id="@+id/smth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_edit" />
 
-        <EditText android:id="@+id/add_reminder_title"
+        <EditText
+            android:id="@+id/add_reminder_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_title" />
+            android:hint="@string/hint_title"/>
 
-        <EditText android:id="@+id/add_reminder_Content"
+        <EditText
+            android:id="@+id/add_reminder_Content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_content"
-            android:layout_weight="0.18" />
+            android:layout_weight="0.18"
+            android:hint="@string/hint_content"/>
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+                    android:id="@+id/radiogroup_type_reminder"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
                     android:checkedButton="@+id/radio_datetime"
-            android:id="@+id/radiogroup_type_reminder">
-            <RadioButton android:id="@+id/radio_datetime"
+                    android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radio_datetime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/radio_datetime"/>
-            <RadioButton android:id="@+id/radio_location"
+
+            <RadioButton
+                android:id="@+id/radio_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/radio_location"/>
         </RadioGroup>
 
         <Button
+            android:id="@+id/btn_open_time_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_open_time_picker"
             android:text="Open Time Picker"/>
 
         <Button
+            android:id="@+id/btn_open_date_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_open_date_picker"
             android:text="Open Date Picker"/>
 
         <Button
+            android:id="@+id/btn_set_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_set_location"
             android:text="Set Location"
             android:visibility="gone"/>
 
@@ -86,14 +95,11 @@
             android:visibility="gone"/>
 
         <Button
+            android:id="@+id/btn_add_reminder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_add_reminder"
             android:text="Add Reminder"/>
 
 
-
-
-
     </LinearLayout>
- </ScrollView>
+</ScrollView>
