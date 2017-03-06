@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.LocationManager;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Vibrator;
 import com.vinkel.remindmewheniamthere.config.di.annotations.AppContext;
 import com.vinkel.remindmewheniamthere.config.di.annotations.UnscopedIntentFactory;
 import com.vinkel.remindmewheniamthere.providers.IntentFactory;
@@ -27,6 +29,7 @@ public class AppModule {
   private final Application application;
   private IApplicationSettingsManager applicationSettingsManagerInstance;
   private IIntentFactory intentFactory;
+  private MediaPlayer mediaPlayer;
 
   public AppModule(Application application) {
 
@@ -109,4 +112,17 @@ public class AppModule {
     return this.intentFactory;
   }
 
+  @Provides
+  MediaPlayer provideMediaPlayer() {
+    if (mediaPlayer == null) {
+      this.mediaPlayer = new MediaPlayer();
+    }
+
+    return this.mediaPlayer;
+  }
+
+  @Provides
+  Vibrator provideVibrator() {
+    return (Vibrator) this.application.getSystemService(Context.VIBRATOR_SERVICE);
+  }
 }

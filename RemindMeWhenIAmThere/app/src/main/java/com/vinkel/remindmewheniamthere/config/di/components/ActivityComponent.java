@@ -9,6 +9,7 @@ import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderActivity;
 import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderView;
 import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import com.vinkel.remindmewheniamthere.views.intro.IntroActivity;
+import com.vinkel.remindmewheniamthere.views.reminder_poup.ReminderPopupActivity;
 import com.vinkel.remindmewheniamthere.views.settings.SettingsActivity;
 import com.vinkel.remindmewheniamthere.views.sign_in.SignInActivity;
 import com.vinkel.remindmewheniamthere.views.sign_in.SignInView;
@@ -39,4 +40,6 @@ public interface ActivityComponent {
   void inject(SignUpView signUpView);
 
   void inject(SignInView signInView);
+
+  void inject(ReminderPopupActivity reminderPopupActivity);
 }
