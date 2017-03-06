@@ -36,9 +36,8 @@ public class PresenterModule {
 
   @Inject
   @Provides
-  IHomeContracts.Presenter provideHomePresenter(
-      IApplicationSettingsManager applicationSettingsManager, IReminderFactory reminderFactory) {
-    return new HomePresenter(applicationSettingsManager, reminderFactory);
+  IHomeContracts.Presenter provideHomePresenter(IReminderDatabase reminderDatabase) {
+    return new HomePresenter(reminderDatabase);
   }
 
   @Inject

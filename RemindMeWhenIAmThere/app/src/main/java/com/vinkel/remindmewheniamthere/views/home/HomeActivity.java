@@ -37,6 +37,12 @@ public class HomeActivity extends AppCompatActivity {
     this.homeView.setNavigationDrawer(R.layout.activity_home);
   }
 
+  @Override
+  protected void onResume() {
+    super.onResume();
+    homePresenter.loadReminders();
+  }
+
   private void setup() {
     homePresenter.setView(homeView);
     homeView.setPresenter(homePresenter);

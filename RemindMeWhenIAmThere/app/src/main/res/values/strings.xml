@@ -4,4 +4,5 @@
     <string name="set_location">Set Location</string>
     <string name="location_name">Location Name</string>
     <string name="add_reminder">Add Reminder</string>
+    <string name="no_active_reminders">No active reminders</string>
 </resources>

@@ -7,30 +7,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 import com.vinkel.remindmewheniamthere.R;
-import com.vinkel.remindmewheniamthere.models.Reminder;
 import com.vinkel.remindmewheniamthere.models.base.IReminder;
-import com.vinkel.remindmewheniamthere.providers.ReminderFactory;
 import com.vinkel.remindmewheniamthere.ui.adapters.ReminderAdapter;
 import com.vinkel.remindmewheniamthere.ui.fragments.ToolbarFragment;
-import com.vinkel.remindmewheniamthere.views.base.IPresenter;
 import com.vinkel.remindmewheniamthere.views.home.base.IHomeContracts;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-
-import javax.inject.Inject;
 
 public class HomeView extends ToolbarFragment implements IHomeContracts.View {
 
-  private IPresenter<IHomeContracts.View> presenter;
+  private IHomeContracts.Presenter presenter;
 
-  private TextView tvTitle;
   private SwipeRefreshLayout swipeRefreshLayout;
-  ListView listView;
-  private static ReminderAdapter adapter;
+  private ListView listView;
+  private ReminderAdapter adapter;
+
+  private boolean adapterIsSet = false;
+
 
   @Nullable
   @Override
@@ -45,29 +38,31 @@ public class HomeView extends ToolbarFragment implements IHomeContracts.View {
     this.presenter = presenter;
   }
 
-  @Override
-  public void setTitle(String title) {
-    this.tvTitle.setText(title);
-  }
-
 
   public void prepareView(View view) {
     this.listView = (ListView) view.findViewById(R.id.lv_reminders);
-    this.tvTitle = (TextView) view.findViewById(R.id.tv_title);
     this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
-
-    //this needs to be checked and prob injected
+    this.adapter = new ReminderAdapter(getContext(), new ArrayList<IReminder>());
 
     swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
       @Override
       public void onRefresh() {
-        //refresh
-        swipeRefreshLayout.setRefreshing(false);
+        presenter.loadReminders();
       }
     });
   }
+
   public void setReminders(ArrayList<IReminder> reminders) {
-    adapter = new ReminderAdapter(getContext(), reminders);
-    listView.setAdapter(adapter);
+    this.adapter.clear();
+    this.adapter.addAll(reminders);
+    if (!this.adapterIsSet) {
+      this.listView.setAdapter(this.adapter);
+      this.adapterIsSet = true;
+    }
+  }
+
+  @Override
+  public void setRefreshing(boolean value) {
+    swipeRefreshLayout.setRefreshing(value);
   }
 }

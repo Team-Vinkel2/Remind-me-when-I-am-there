@@ -1,26 +1,24 @@
 package com.vinkel.remindmewheniamthere.views.home;
 
+import com.vinkel.remindmewheniamthere.data.base.IReminderDatabase;
 import com.vinkel.remindmewheniamthere.models.base.IReminder;
-import com.vinkel.remindmewheniamthere.providers.base.IReminderFactory;
-import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
 import com.vinkel.remindmewheniamthere.views.home.base.IHomeContracts;
-
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import java.util.ArrayList;
-
+import java.util.List;
 import javax.inject.Inject;
 
 public class HomePresenter implements IHomeContracts.Presenter {
 
   private IHomeContracts.View view;
 
-  IReminderFactory factory;
 
-  private final IApplicationSettingsManager applicationSettingsManager;
+  private final IReminderDatabase reminderDatabase;
 
   @Inject
-  public HomePresenter(IApplicationSettingsManager applicationSettingsManager, IReminderFactory factory) {
-    this.applicationSettingsManager = applicationSettingsManager;
-    this.factory = factory;
+  public HomePresenter(IReminderDatabase reminderDatabase) {
+    this.reminderDatabase = reminderDatabase;
   }
 
   @Override
@@ -30,20 +28,23 @@ public class HomePresenter implements IHomeContracts.Presenter {
 
   @Override
   public void start() {
-    this.view.setTitle(this.applicationSettingsManager.getRingtoneUri().getPath());
+    this.loadReminders();
+  }
 
-    ArrayList<IReminder> reminders = new ArrayList<IReminder>();
-    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
-    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
-    reminders.add(factory.getLocalLocationReminder("Test Title", "Test Content", 50, 50, "Test Location"));
-    reminders.add(factory.getLocalLocationReminder("Test Title", "Test Content", 50, 50, "Test Location"));
-    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
-    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
-    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
-    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
-    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
-    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
 
-    this.view.setReminders(reminders);
+  @Override
+  public void loadReminders() {
+    this.view.setRefreshing(true);
+
+    this.reminderDatabase
+        .getActiveReminders()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Consumer<List<IReminder>>() {
+          @Override
+          public void accept(List<IReminder> activeReminders) throws Exception {
+            view.setReminders(new ArrayList<>(activeReminders));
+            view.setRefreshing(false);
+          }
+        });
   }
 }
