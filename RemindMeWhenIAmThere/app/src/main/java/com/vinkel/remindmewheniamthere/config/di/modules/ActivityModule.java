@@ -7,6 +7,9 @@ import com.vinkel.remindmewheniamthere.config.di.annotations.ActivityContext;
 import com.vinkel.remindmewheniamthere.config.di.annotations.IntentFactoryForActivity;
 import com.vinkel.remindmewheniamthere.providers.IntentFactory;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
+import com.vinkel.remindmewheniamthere.utils.Notificator;
+import com.vinkel.remindmewheniamthere.utils.base.INotificator;
+
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Inject;
@@ -16,6 +19,7 @@ public class ActivityModule {
   private final Activity activity;
   private FragmentManager fragmentManager;
   private IIntentFactory intentFactory;
+  private INotificator notificator;
 
   public ActivityModule(Activity activity) {
     this.activity = activity;
@@ -51,5 +55,15 @@ public class ActivityModule {
     }
 
     return this.intentFactory;
+  }
+
+  @Inject
+  @Provides
+  INotificator provideNotificator(Context context) {
+    if (this.notificator == null) {
+      this.notificator = new Notificator(context);
+    }
+
+    return this.notificator;
   }
 }
