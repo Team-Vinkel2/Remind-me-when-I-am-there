@@ -40,7 +40,7 @@ public class SettingsView extends Fragment implements ISettingsContracts.View {
   }
 
   public void prepareView(View view) {
-    selectRingtone = (Button) view.findViewById(R.id.btn_select_ringtone)
+    selectRingtone = (Button) view.findViewById(R.id.btn_select_ringtone);
     volControl = (SeekBar) view.findViewById(R.id.volume_bar);
 
     volControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
