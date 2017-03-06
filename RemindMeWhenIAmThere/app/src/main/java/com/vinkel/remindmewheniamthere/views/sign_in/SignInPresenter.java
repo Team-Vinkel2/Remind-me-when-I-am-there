@@ -58,6 +58,7 @@ public class SignInPresenter implements ISignInContracts.Presenter {
             userSession.setEmail(value.getEmail());
             userSession.setUsername(value.getUsername());
             userSession.setAuthToken(value.getAuthtoken());
+            view.displayMessage("Successfully Logged In");
           }
 
           @Override

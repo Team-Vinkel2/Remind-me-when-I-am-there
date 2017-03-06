@@ -7,6 +7,7 @@ public interface ISignUpContracts {
 
   interface View extends IView<Presenter> {
     void completed();
+    void displayMessage(String message);
 
   }
 

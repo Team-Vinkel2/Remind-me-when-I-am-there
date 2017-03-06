@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import com.vinkel.remindmewheniamthere.config.di.annotations.ActivityContext;
+import com.vinkel.remindmewheniamthere.config.di.annotations.AppContext;
 import com.vinkel.remindmewheniamthere.config.di.annotations.IntentFactoryForActivity;
 import com.vinkel.remindmewheniamthere.providers.IntentFactory;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
@@ -59,7 +60,7 @@ public class ActivityModule {
 
   @Inject
   @Provides
-  INotificator provideNotificator(Context context) {
+  INotificator provideNotificator(@ActivityContext Context context) {
     if (this.notificator == null) {
       this.notificator = new Notificator(context);
     }

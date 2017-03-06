@@ -56,6 +56,7 @@ public class SignUpPresenter implements ISignUpContracts.Presenter {
 
           @Override
           public void onNext(IUser value) {
+            view.displayMessage("Successfully registered");
             view.completed();
           }
 

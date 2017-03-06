@@ -8,6 +8,7 @@ public interface ISignInContracts {
 
   interface View extends IView<Presenter> {
     void completed();
+    void displayMessage(String message);
   }
 
   interface Presenter extends IPresenter<View> {

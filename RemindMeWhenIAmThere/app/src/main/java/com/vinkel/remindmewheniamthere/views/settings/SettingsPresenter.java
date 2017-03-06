@@ -8,20 +8,20 @@ import javax.inject.Inject;
 
 public class SettingsPresenter implements ISettingsContracts.Presenter {
 
-    private ISettingsContracts.View view;
+  private ISettingsContracts.View view;
 
-    @Inject
-    public SettingsPresenter() {
+  @Inject
+  public SettingsPresenter() {
 
-    }
+  }
 
-    @Override
-    public void setView(ISettingsContracts.View view) {
-        this.view = view;
-    }
+  @Override
+  public void setView(ISettingsContracts.View view) {
+    this.view = view;
+  }
 
-    @Override
-    public void start() {
+  @Override
+  public void start() {
 
-    }
+  }
 }

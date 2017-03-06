@@ -14,38 +14,38 @@ import javax.inject.Inject;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    @Inject
-    ISettingsContracts.Presenter settingsPresenter;
-    ISettingsContracts.View settingsView;
+  @Inject
+  ISettingsContracts.Presenter settingsPresenter;
+  ISettingsContracts.View settingsView;
 
-    @Inject
-    FragmentManager fragmentManager;
+  @Inject
+  FragmentManager fragmentManager;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        this.injectMembers();
-        this.initializeViews();
-        this.setup();
-        this.settingsPresenter.start();
-    }
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_settings);
+    this.injectMembers();
+    this.initializeViews();
+    this.setup();
+    this.settingsPresenter.start();
+  }
 
-    private void initializeViews() {
-        this.settingsView = (ISettingsContracts.View) fragmentManager.findFragmentById(R.id.fragment_settings);
-    }
+  private void initializeViews() {
+    this.settingsView = (ISettingsContracts.View) fragmentManager.findFragmentById(R.id.fragment_settings);
+  }
 
-    private void setup() {
-        settingsPresenter.setView(settingsView);
-        settingsView.setPresenter(settingsPresenter);
-    }
+  private void setup() {
+    settingsPresenter.setView(settingsView);
+    settingsView.setPresenter(settingsPresenter);
+  }
 
-    private void injectMembers() {
-        ((RMWITApplication) this.getApplication())
-                .getComponent()
-                .getActivityComponent(new ActivityModule(this, this.getSupportFragmentManager()))
-                .inject(this);
-    }
+  private void injectMembers() {
+    ((RMWITApplication) this.getApplication())
+        .getComponent()
+        .getActivityComponent(new ActivityModule(this, this.getSupportFragmentManager()))
+        .inject(this);
+  }
 
 
 }

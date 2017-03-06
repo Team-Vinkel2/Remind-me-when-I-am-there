@@ -13,20 +13,20 @@ import com.vinkel.remindmewheniamthere.views.settings.base.ISettingsContracts;
 
 public class SettingsView extends Fragment implements ISettingsContracts.View {
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_settings, container, false);
-        prepareView(view);
-        return view;
-    }
+  @Nullable
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_settings, container, false);
+    prepareView(view);
+    return view;
+  }
 
-    @Override
-    public void setPresenter(ISettingsContracts.Presenter presenter) {
+  @Override
+  public void setPresenter(ISettingsContracts.Presenter presenter) {
 
-    }
+  }
 
-    public void prepareView(View view) {
+  public void prepareView(View view) {
 
-    }
+  }
 }
