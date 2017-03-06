@@ -11,6 +11,7 @@ import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import com.vinkel.remindmewheniamthere.views.intro.IntroActivity;
 import com.vinkel.remindmewheniamthere.views.settings.SettingsActivity;
 import com.vinkel.remindmewheniamthere.views.sign_in.SignInActivity;
+import com.vinkel.remindmewheniamthere.views.sign_in.SignInView;
 import com.vinkel.remindmewheniamthere.views.sign_up.SignUpActivity;
 import com.vinkel.remindmewheniamthere.views.sign_up.SignUpView;
 import dagger.Subcomponent;
@@ -35,4 +36,7 @@ public interface ActivityComponent {
 
   void inject(AddReminderView addReminderView);
 
+  void inject(SignUpView signUpView);
+
+  void inject(SignInView signInView);
 }
