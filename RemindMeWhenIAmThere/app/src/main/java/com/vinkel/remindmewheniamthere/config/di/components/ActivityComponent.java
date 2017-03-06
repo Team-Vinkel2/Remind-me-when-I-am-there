@@ -6,6 +6,7 @@ import com.vinkel.remindmewheniamthere.config.di.modules.PresenterModule;
 import com.vinkel.remindmewheniamthere.config.di.modules.ViewModule;
 import com.vinkel.remindmewheniamthere.ui.fragments.ToolbarFragment;
 import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderActivity;
+import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderView;
 import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import com.vinkel.remindmewheniamthere.views.intro.IntroActivity;
 import com.vinkel.remindmewheniamthere.views.settings.SettingsActivity;
@@ -32,5 +33,6 @@ public interface ActivityComponent {
 
   void inject(AddReminderActivity addReminderActivity);
 
-  void inject(SignUpView signUpView);
+  void inject(AddReminderView addReminderView);
+
 }

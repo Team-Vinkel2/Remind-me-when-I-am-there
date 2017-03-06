@@ -34,6 +34,7 @@ import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import com.vinkel.remindmewheniamthere.views.settings.SettingsActivity;
 import com.vinkel.remindmewheniamthere.views.sign_in.SignInActivity;
 import com.vinkel.remindmewheniamthere.views.sign_up.SignUpActivity;
+
 import javax.inject.Inject;
 
 public class ToolbarFragment extends Fragment implements IToolbar {
@@ -98,11 +99,11 @@ public class ToolbarFragment extends Fragment implements IToolbar {
   public void setNavigationDrawer(@LayoutRes long selectedItem) {
     createDrawerBuilder();
 
-    final Intent homeIntent = intentFactory.getIntent(HomeActivity.class);
-    final Intent signUpIntent = intentFactory.getIntent(SignUpActivity.class);
-    final Intent signInIntent = intentFactory.getIntent(SignInActivity.class);
-    final Intent addReminderIntent = intentFactory.getIntent(AddReminderActivity.class);
-    final Intent settingsIntent = intentFactory.getIntent(SettingsActivity.class);
+    final Intent homeIntent = intentFactory.getIntentWithSetToFrontFlag(HomeActivity.class);
+    final Intent signUpIntent = intentFactory.getIntentWithSetToFrontFlag(SignUpActivity.class);
+    final Intent signInIntent = intentFactory.getIntentWithSetToFrontFlag(SignInActivity.class);
+    final Intent addReminderIntent = intentFactory.getIntentWithSetToFrontFlag(AddReminderActivity.class);
+    final Intent settingsIntent = intentFactory.getIntentWithSetToFrontFlag(SettingsActivity.class);
 
     //Session
 
@@ -150,10 +151,12 @@ public class ToolbarFragment extends Fragment implements IToolbar {
 
   private void createDrawerBuilder() {
     AccountHeader accountHeader = new AccountHeaderBuilder()
-            .withActivity(currentActivity)
-            .addProfiles(
-                    new ProfileDrawerItem().withName("Injecrva se ot nqkude").withEmail("I toq cheshit shushto@abv.bg")
-            ).build();
+        .withActivity(currentActivity)
+        .withTranslucentStatusBar(true)
+        .withHeaderBackground(R.drawable.drawer_background)
+        .addProfiles(
+            new ProfileDrawerItem().withName("Injecrva se ot nqkude").withEmail("I toq cheshit shushto@abv.bg")
+        ).build();
 
     IDrawerItem home = drawerItemFactory
         .createPrimaryDrawerItem()
@@ -161,19 +164,19 @@ public class ToolbarFragment extends Fragment implements IToolbar {
         .withName(R.string.drawer_home);
 
     IDrawerItem settings = drawerItemFactory
-            .createPrimaryDrawerItem()
-            .withIdentifier(R.layout.activity_settings)
-            .withName(R.string.drawer_settings);
+        .createPrimaryDrawerItem()
+        .withIdentifier(R.layout.activity_settings)
+        .withName(R.string.drawer_settings);
 
     IDrawerItem addReminder = drawerItemFactory
-            .createPrimaryDrawerItem()
-            .withIdentifier(R.layout.activity_add_reminder)
-            .withName(R.string.drawer_add_reminder);
+        .createPrimaryDrawerItem()
+        .withIdentifier(R.layout.activity_add_reminder)
+        .withName(R.string.drawer_add_reminder);
 
     navigationDrawer
         .withToolbar(toolbar)
         .withWidth(270)
-            .withAccountHeader(accountHeader)
+        .withAccountHeader(accountHeader)
         .withDrawerItems(home, drawerItemFactory.createDividerDrawerItem(), settings, addReminder, drawerItemFactory.createDividerDrawerItem());
 
   }

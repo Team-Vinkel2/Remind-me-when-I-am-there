@@ -1,9 +1,13 @@
 package com.vinkel.remindmewheniamthere.views.add_reminder;
 
+import android.content.Intent;
+import android.location.Address;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.schibstedspain.leku.LocationPickerActivity;
 import com.vinkel.remindmewheniamthere.R;
 import com.vinkel.remindmewheniamthere.RMWITApplication;
 import com.vinkel.remindmewheniamthere.config.di.modules.ActivityModule;
@@ -19,6 +23,7 @@ public class AddReminderActivity extends AppCompatActivity {
 
     @Inject
     FragmentManager fragmentManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -2,6 +2,8 @@
 <resources>
     <string name="radio_me">For Me</string>
     <string name="radio_other">For other user</string>
+    <string name="radio_datetime">For When?</string>
+    <string name="radio_location">For Where?</string>
     <string name="hint_edit">Nz kakvo trqbva da pishe</string>
     <string name="hint_title">Reminder Title</string>
     <string name="hint_content">Reminder Content</string>

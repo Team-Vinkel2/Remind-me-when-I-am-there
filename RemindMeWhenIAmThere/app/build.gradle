@@ -11,6 +11,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -24,6 +27,9 @@ repositories {
 }
 
 dependencies {
+
+    def playServicesVer = '10.0.1'
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -46,8 +52,12 @@ dependencies {
     }
 
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
-
+    compile "com.google.android.gms:play-services-maps:$playServicesVer"
     compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
 
+    compile 'com.schibstedspain.android:leku:3.0.0'
+
+    compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'
+    compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
 
 }

@@ -130,5 +130,4 @@ public class UserData extends BaseData<IUser> implements IUserData {
           }
         });
   }
-
 }
