@@ -34,6 +34,15 @@ public class HomePresenter implements IHomeContracts.Presenter {
 
     ArrayList<IReminder> reminders = new ArrayList<IReminder>();
     reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
+    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
+    reminders.add(factory.getLocalLocationReminder("Test Title", "Test Content", 50, 50, "Test Location"));
+    reminders.add(factory.getLocalLocationReminder("Test Title", "Test Content", 50, 50, "Test Location"));
+    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
+    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
+    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
+    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
+    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
+    reminders.add(factory.getLocalDateReminder("Test Title", "Test Content", "Test Date"));
 
     this.view.setReminders(reminders);
   }
