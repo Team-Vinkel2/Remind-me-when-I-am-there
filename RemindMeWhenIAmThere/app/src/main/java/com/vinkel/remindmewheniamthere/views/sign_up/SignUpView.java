@@ -4,6 +4,7 @@ package com.vinkel.remindmewheniamthere.views.sign_up;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,7 @@ public class SignUpView extends Fragment implements ISignUpContracts.View {
         String confirmPasswordSend = confirmPassword.getText().toString();
         String emailSend = email.getText().toString();
 
-        if (passwordSend == confirmPasswordSend) {
+        if (passwordSend.equals(confirmPasswordSend)) {
           presenter.signUp(usernameSend, firstnameSend, passwordSend, emailSend);
         } else {
           Toast.makeText(getContext() , "Passwords don't match", Toast.LENGTH_SHORT).show();
@@ -63,5 +64,8 @@ public class SignUpView extends Fragment implements ISignUpContracts.View {
 
       }
     });
+  }
+  public void completed() {
+    getActivity().finish();
   }
 }

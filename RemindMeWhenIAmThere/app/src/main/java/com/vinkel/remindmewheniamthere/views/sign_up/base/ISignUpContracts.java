@@ -6,10 +6,11 @@ import com.vinkel.remindmewheniamthere.views.base.IView;
 public interface ISignUpContracts {
 
   interface View extends IView<Presenter> {
+    void completed();
 
   }
 
   interface Presenter extends IPresenter<View> {
-        void signUp(String username, String firstname, String password, String email);
+    void signUp(String username, String firstname, String password, String email);
   }
 }
