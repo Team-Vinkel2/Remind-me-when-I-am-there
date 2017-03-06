@@ -26,8 +26,8 @@ public class ReminderManager implements IReminderManager {
 
   public void setReminder(Calendar time, int alarmId) {
     Intent intent = this.intentFactory.getIntent(ReminderReceiver.class);
-    intent.putExtra(EXTRA_REMINDER_ID_KEY, alarmId);
-    PendingIntent pendingIntent = this.intentFactory.getBroadcastPendingIntent(alarmId, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+    intent.putExtra(EXTRA_REMINDER_ID_KEY, (int)(long) alarmId);
+    PendingIntent pendingIntent = this.intentFactory.getBroadcastPendingIntent((int)(long) alarmId, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
     Calendar currentCalendar = Calendar.getInstance();
     long currentTime = currentCalendar.getTimeInMillis();

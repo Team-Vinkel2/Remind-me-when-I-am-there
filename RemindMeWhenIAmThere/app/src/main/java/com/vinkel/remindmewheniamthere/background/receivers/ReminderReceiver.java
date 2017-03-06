@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import com.vinkel.remindmewheniamthere.RMWITApplication;
-import com.vinkel.remindmewheniamthere.config.di.annotations.AppContext;
 import com.vinkel.remindmewheniamthere.config.di.annotations.UnscopedIntentFactory;
 import com.vinkel.remindmewheniamthere.config.di.modules.BackgroundModule;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
@@ -20,10 +19,6 @@ public class ReminderReceiver extends WakefulBroadcastReceiver {
   @UnscopedIntentFactory
   IIntentFactory intentFactory;
 
-  @Inject
-  @AppContext
-  Context appContext;
-
   @Override
   public void onReceive(Context context, Intent intent) {
     this.injectMembers();
@@ -34,9 +29,9 @@ public class ReminderReceiver extends WakefulBroadcastReceiver {
     }
 
     Intent reminderIntent = intentFactory.getIntent(ReminderPopupActivity.class);
-    intent.putExtra(ReminderManager.EXTRA_REMINDER_ID_KEY, reminderID);
-    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-    this.appContext.startActivity(reminderIntent);
+    reminderIntent.putExtra(ReminderManager.EXTRA_REMINDER_ID_KEY, reminderID);
+    reminderIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+    context.startActivity(reminderIntent);
   }
 
   private void injectMembers() {

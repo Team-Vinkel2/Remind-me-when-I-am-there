@@ -10,9 +10,13 @@ import android.util.Log;
 import com.vinkel.remindmewheniamthere.RMWITApplication;
 import com.vinkel.remindmewheniamthere.background.observers.base.ILocationObserver;
 import com.vinkel.remindmewheniamthere.config.di.annotations.AppContext;
+import com.vinkel.remindmewheniamthere.config.di.annotations.UnscopedIntentFactory;
 import com.vinkel.remindmewheniamthere.config.di.modules.BackgroundModule;
 import com.vinkel.remindmewheniamthere.data.base.IReminderDatabase;
 import com.vinkel.remindmewheniamthere.models.base.IReminder;
+import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
+import com.vinkel.remindmewheniamthere.utils.ReminderManager;
+import com.vinkel.remindmewheniamthere.views.reminder_poup.ReminderPopupActivity;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -39,6 +43,10 @@ public class PreciseLocationReminderWatcherService extends Service {
   @Inject
   @AppContext
   Context appContext;
+
+  @Inject
+  @UnscopedIntentFactory
+  IIntentFactory intentFactory;
 
   private Disposable locationSubscriber;
 
@@ -106,9 +114,10 @@ public class PreciseLocationReminderWatcherService extends Service {
                 );
 
                 if (distanceToReminder < OPTIMAL_ALARM_RANGE_TRIGGER) {
-                  //Start alarm popup
-                  //State that this alarm went off
-
+                  Intent reminderIntent = intentFactory.getIntent(ReminderPopupActivity.class);
+                  reminderIntent.putExtra(ReminderManager.EXTRA_REMINDER_ID_KEY, (int)(long) reminder.getId());
+                  reminderIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                  appContext.startActivity(reminderIntent);
                   nearbyRemindersCount--;
                   reminder.setIsActive(false);
                   reminderDatabase.update(reminder)

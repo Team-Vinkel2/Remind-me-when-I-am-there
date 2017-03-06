@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Remind me when I\'m there</string>
+    <string name="open_date_picker">Open Date Picker</string>
+    <string name="set_location">Set Location</string>
+    <string name="location_name">Location Name</string>
+    <string name="add_reminder">Add Reminder</string>
 </resources>

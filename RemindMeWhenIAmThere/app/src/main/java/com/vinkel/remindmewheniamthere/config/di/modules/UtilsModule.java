@@ -2,6 +2,8 @@ package com.vinkel.remindmewheniamthere.config.di.modules;
 
 import android.app.ActivityManager;
 import android.app.AlarmManager;
+import android.content.Context;
+import com.vinkel.remindmewheniamthere.config.di.annotations.AppContext;
 import com.vinkel.remindmewheniamthere.config.di.annotations.UnscopedIntentFactory;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
 import com.vinkel.remindmewheniamthere.utils.DateTimeHelper;
@@ -16,6 +18,7 @@ import com.vinkel.remindmewheniamthere.utils.base.IServiceHelper;
 import com.vinkel.remindmewheniamthere.utils.base.IUriParser;
 import dagger.Module;
 import dagger.Provides;
+import javax.inject.Inject;
 
 @Module
 public class UtilsModule {
@@ -39,10 +42,14 @@ public class UtilsModule {
     return this.reminderManager;
   }
 
+  @Inject
   @Provides
-  IServiceHelper provideServiceHelper(ActivityManager activityManager) {
+  IServiceHelper provideServiceHelper(
+      ActivityManager activityManager,
+      @AppContext Context appContext,
+      @UnscopedIntentFactory IIntentFactory intentFactory) {
     if (this.serviceHelper == null) {
-      this.serviceHelper = new ServiceHelper(activityManager);
+      this.serviceHelper = new ServiceHelper(activityManager, appContext, intentFactory);
     }
 
     return this.serviceHelper;

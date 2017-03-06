@@ -42,7 +42,7 @@
             android:hint="@string/hint_title"/>
 
         <EditText
-            android:id="@+id/add_reminder_Content"
+            android:id="@+id/add_reminder_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.18"
@@ -69,37 +69,41 @@
         </RadioGroup>
 
         <Button
-            android:id="@+id/btn_open_time_picker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Open Time Picker"/>
-
-        <Button
             android:id="@+id/btn_open_date_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Open Date Picker"/>
+            android:text="@string/open_date_picker"/>
+
 
         <Button
             android:id="@+id/btn_set_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Set Location"
+            android:text="@string/set_location"
             android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tv_location_or_date_info"
+            android:layout_width="match_parent"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:textSize="17sp"
+            android:layout_height="wrap_content"/>
 
         <EditText
             android:id="@+id/edittext_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Location Name"
+            android:hint="@string/location_name"
             android:visibility="gone"/>
 
         <Button
             android:id="@+id/btn_add_reminder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Reminder"/>
-
+            android:text="@string/add_reminder"/>
 
     </LinearLayout>
 </ScrollView>

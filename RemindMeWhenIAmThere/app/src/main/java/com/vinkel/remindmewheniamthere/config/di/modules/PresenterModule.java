@@ -1,7 +1,11 @@
 package com.vinkel.remindmewheniamthere.config.di.modules;
 
+import com.vinkel.remindmewheniamthere.data.base.IReminderDatabase;
 import com.vinkel.remindmewheniamthere.providers.base.IReminderFactory;
 import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
+import com.vinkel.remindmewheniamthere.utils.base.IDateTimeHelper;
+import com.vinkel.remindmewheniamthere.utils.base.IReminderManager;
+import com.vinkel.remindmewheniamthere.utils.base.IServiceHelper;
 import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderPresenter;
 import com.vinkel.remindmewheniamthere.views.add_reminder.base.IAddReminderContracts;
 import com.vinkel.remindmewheniamthere.views.home.HomePresenter;
@@ -29,21 +33,35 @@ public class PresenterModule {
 
   @Inject
   @Provides
-  ISignUpContracts.Presenter provideSignUpPresenter (){
+  ISignUpContracts.Presenter provideSignUpPresenter() {
     return new SignUpPresenter();
   }
 
   @Inject
   @Provides
-  ISignInContracts.Presenter provideSignInPresenter (){
+  ISignInContracts.Presenter provideSignInPresenter() {
     return new SignInPresenter();
   }
 
   @Inject
   @Provides
-  IAddReminderContracts.Presenter provideAddReminderPresenter () { return new AddReminderPresenter(); }
+  IAddReminderContracts.Presenter provideAddReminderPresenter(
+      IReminderFactory reminderFactory,
+      IReminderDatabase reminderDatabase,
+      IReminderManager reminderManager,
+      IServiceHelper serviceHelper,
+      IDateTimeHelper dateTimeHelper) {
+    return new AddReminderPresenter(
+        reminderFactory,
+        reminderDatabase,
+        reminderManager,
+        serviceHelper,
+        dateTimeHelper);
+  }
 
   @Inject
   @Provides
-  ISettingsContracts.Presenter provideSettingsPresenter () { return  new SettingsPresenter(); }
+  ISettingsContracts.Presenter provideSettingsPresenter() {
+    return new SettingsPresenter();
+  }
 }

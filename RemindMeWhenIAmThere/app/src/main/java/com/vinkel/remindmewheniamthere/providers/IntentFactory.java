@@ -4,10 +4,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import com.vinkel.remindmewheniamthere.providers.base.IIntentFactory;
+import javax.inject.Inject;
 
 public class IntentFactory implements IIntentFactory {
   private final Context context;
 
+  @Inject
   public IntentFactory(Context context) {
     this.context = context;
   }

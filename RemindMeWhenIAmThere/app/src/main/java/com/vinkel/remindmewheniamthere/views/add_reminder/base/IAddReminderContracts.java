@@ -6,11 +6,13 @@ import com.vinkel.remindmewheniamthere.views.base.IView;
 
 public interface IAddReminderContracts {
 
-    interface View extends IView<Presenter> {
+  interface View extends IView<Presenter> {
+    void finish();
+  }
 
-    }
+  interface Presenter extends IPresenter<View> {
+    void addLocalReminderForDate(String title, String content, int year, int month, int date, int hour, int minute);
 
-    interface Presenter extends IPresenter<View> {
-
-    }
+    void addLocalReminderForLocation(String title, String content, double latitude, double longitude, String locationName);
+  }
 }
