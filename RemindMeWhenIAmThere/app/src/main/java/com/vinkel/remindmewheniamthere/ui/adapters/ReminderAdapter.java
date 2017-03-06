@@ -4,6 +4,7 @@ package com.vinkel.remindmewheniamthere.ui.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,12 +69,12 @@ public class ReminderAdapter extends ArrayAdapter<IReminder> {
 
     lastPosition = position;
 
-    viewHolder.title.setText(reminder.getTitle());
-    viewHolder.content.setText(reminder.getContent());
+    viewHolder.title.setText(Html.fromHtml("<b> Title: </b>" + reminder.getTitle()));
+    viewHolder.content.setText(Html.fromHtml("<b> Content: </b>" + reminder.getContent()));
     if (reminder.getDateString() == null) {
-      viewHolder.dateoOrPlace.setText(reminder.getLocationName());
+      viewHolder.dateoOrPlace.setText(Html.fromHtml("<b> Location: </b>" + reminder.getLocationName()));
     } else {
-      viewHolder.dateoOrPlace.setText(reminder.getDateString());
+      viewHolder.dateoOrPlace.setText(Html.fromHtml("<b> Date and Time: </b>" + reminder.getDateString()));
     }
 
     return convertView;
