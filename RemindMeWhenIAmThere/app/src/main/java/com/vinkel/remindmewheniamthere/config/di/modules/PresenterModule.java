@@ -4,6 +4,7 @@ import com.vinkel.remindmewheniamthere.network.base.IUserData;
 import com.vinkel.remindmewheniamthere.providers.base.IReminderFactory;
 import com.vinkel.remindmewheniamthere.providers.base.IUserFactory;
 import com.vinkel.remindmewheniamthere.utils.base.IApplicationSettingsManager;
+import com.vinkel.remindmewheniamthere.utils.base.IUserSession;
 import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderPresenter;
 import com.vinkel.remindmewheniamthere.views.add_reminder.base.IAddReminderContracts;
 import com.vinkel.remindmewheniamthere.views.home.HomePresenter;
@@ -38,8 +39,8 @@ public class PresenterModule {
 
   @Inject
   @Provides
-  ISignInContracts.Presenter provideSignInPresenter(IUserData userData, IUserFactory factory) {
-    return new SignInPresenter(userData, factory);
+  ISignInContracts.Presenter provideSignInPresenter(IUserData userData, IUserFactory factory, IUserSession userSession) {
+    return new SignInPresenter(userData, factory, userSession);
   }
 
   @Inject

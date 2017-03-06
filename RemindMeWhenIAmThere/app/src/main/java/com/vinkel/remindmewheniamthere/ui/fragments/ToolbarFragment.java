@@ -29,6 +29,8 @@ import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawer;
 import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawerItem;
 import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawerItemFactory;
 import com.vinkel.remindmewheniamthere.ui.fragments.base.IToolbar;
+import com.vinkel.remindmewheniamthere.utils.UserSession;
+import com.vinkel.remindmewheniamthere.utils.base.IUserSession;
 import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderActivity;
 import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import com.vinkel.remindmewheniamthere.views.settings.SettingsActivity;
@@ -46,6 +48,8 @@ public class ToolbarFragment extends Fragment implements IToolbar {
   IIntentFactory intentFactory;
   @Inject
   IDrawerItemFactory drawerItemFactory;
+  @Inject
+  IUserSession session;
 
   private Toolbar toolbar;
   private ActionBar actionBar;
@@ -100,14 +104,17 @@ public class ToolbarFragment extends Fragment implements IToolbar {
     createDrawerBuilder();
 
     final Intent homeIntent = intentFactory.getIntentWithSetToFrontFlag(HomeActivity.class);
+    final Intent homeIntentWithoutFlag = intentFactory.getIntent(HomeActivity.class);
     final Intent signUpIntent = intentFactory.getIntentWithSetToFrontFlag(SignUpActivity.class);
     final Intent signInIntent = intentFactory.getIntentWithSetToFrontFlag(SignInActivity.class);
     final Intent addReminderIntent = intentFactory.getIntentWithSetToFrontFlag(AddReminderActivity.class);
     final Intent settingsIntent = intentFactory.getIntentWithSetToFrontFlag(SettingsActivity.class);
+    boolean isLogged = session.isUserLoggedIn();
+    IDrawerItem signOut = drawerItemFactory
+        .createPrimaryDrawerItem()
+        .withName(R.string.drawer_log_out);
 
-    //Session
-
-    final IDrawerItem signIn = drawerItemFactory
+    IDrawerItem signIn = drawerItemFactory
         .createPrimaryDrawerItem()
         .withIdentifier(R.layout.activity_sign_in)
         .withName(R.string.drawer_sign_in);
@@ -117,45 +124,87 @@ public class ToolbarFragment extends Fragment implements IToolbar {
         .withIdentifier(R.layout.activity_sign_up)
         .withName(R.string.drawer_sign_up);
 
-    navigationDrawer.withDrawerItems(
-        signIn,
-        signUp
-    )
-        .withOnDrawerItemClickListener(new IDrawer.OnDrawerItemClickListener() {
-          @Override
-          public boolean onClick(View view, int position) {
-            switch (position) {
-              case 1:
-                startActivity(homeIntent);
-                break;
-              case 3:
-                startActivity(settingsIntent);
-                break;
-              case 4:
-                startActivity(addReminderIntent);
-                break;
-              case 6:
-                startActivity(signInIntent);
-                break;
-              case 7:
-                startActivity(signUpIntent);
-                break;
+    if (!isLogged) {
+
+      navigationDrawer.withDrawerItems(
+          signIn,
+          signUp
+      )
+
+          .withOnDrawerItemClickListener(new IDrawer.OnDrawerItemClickListener() {
+            @Override
+            public boolean onClick(View view, int position) {
+              switch (position) {
+                case 1:
+                  startActivity(homeIntent);
+                  break;
+                case 3:
+                  startActivity(settingsIntent);
+                  break;
+                case 4:
+                  startActivity(addReminderIntent);
+                  break;
+                case 6:
+                  startActivity(signInIntent);
+                  break;
+                case 7:
+                  startActivity(signUpIntent);
+                  break;
+              }
+
+              return false;
             }
+          });
 
-            return false;
-          }
-        });
+      navigationDrawer.withSelectedItem(selectedItem).build();
+    } else {
+      navigationDrawer.withDrawerItems(
+           signOut
+      )
 
-    navigationDrawer.withSelectedItem(selectedItem).build();
+          .withOnDrawerItemClickListener(new IDrawer.OnDrawerItemClickListener() {
+            @Override
+            public boolean onClick(View view, int position) {
+              switch (position) {
+                case 1:
+                  startActivity(homeIntent);
+                  break;
+                case 3:
+                  startActivity(settingsIntent);
+                  break;
+                case 4:
+                  startActivity(addReminderIntent);
+                  break;
+                case 6:
+                  session.clearSession();
+                  startActivity(homeIntentWithoutFlag);
+                  break;
+              }
+
+              return false;
+            }
+          });
+
+      navigationDrawer.withSelectedItem(selectedItem).build();
+    }
   }
 
   private void createDrawerBuilder() {
+    boolean isLogged = session.isUserLoggedIn();
+    String username = "Guest";
+    String email = "Guest@mail.com";
+
+    if (isLogged) {
+      username = session.getUsername();
+      email = session.getEmail();
+    }
+
     AccountHeader accountHeader = new AccountHeaderBuilder()
         .withActivity(currentActivity)
         .withTranslucentStatusBar(true)
         .withHeaderBackground(R.drawable.drawer_background)
         .addProfiles(
-            new ProfileDrawerItem().withName("Injecrva se ot nqkude").withEmail("I toq cheshit shushto@abv.bg")
+            new ProfileDrawerItem().withName(username).withEmail(email)
         ).build();
 
     IDrawerItem home = drawerItemFactory
