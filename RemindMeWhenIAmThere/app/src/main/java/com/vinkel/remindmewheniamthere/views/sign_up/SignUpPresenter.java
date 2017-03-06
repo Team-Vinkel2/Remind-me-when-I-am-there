@@ -24,12 +24,12 @@ public class SignUpPresenter implements ISignUpContracts.Presenter {
 
   private ISignUpContracts.View view;
   private IUserData userData;
-  private IUserFactory factory;
+  private IUserFactory userFactory;
 
   @Inject
   public SignUpPresenter(IUserData userData, IUserFactory factory) {
     this.userData = userData;
-    this.factory = factory;
+    this.userFactory = factory;
   }
 
   @Override
@@ -43,7 +43,7 @@ public class SignUpPresenter implements ISignUpContracts.Presenter {
 
   @Override
   public void signUp(String username, String firstname, String password, String email) {
-    IUser user = factory.getSignUpUser(username, firstname, password, email);
+    IUser user = userFactory.getSignUpUser(username, firstname, password, email);
 
     userData.signUp(user)
         .subscribeOn(Schedulers.io())

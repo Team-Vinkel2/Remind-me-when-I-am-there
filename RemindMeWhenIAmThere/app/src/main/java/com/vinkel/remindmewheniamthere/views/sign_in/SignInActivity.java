@@ -13,36 +13,36 @@ import javax.inject.Inject;
 
 public class SignInActivity extends AppCompatActivity {
 
-    @Inject
-    ISignInContracts.Presenter signInPresenter;
-    ISignInContracts.View signInView;
+  @Inject
+  ISignInContracts.Presenter signInPresenter;
+  ISignInContracts.View signInView;
 
-    @Inject
-    FragmentManager fragmentManager;
+  @Inject
+  FragmentManager fragmentManager;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-        this.injectMembers();
-        this.initializeViews();
-        this.setup();
-        this.signInPresenter.start();
-    }
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_sign_in);
+    this.injectMembers();
+    this.initializeViews();
+    this.setup();
+    this.signInPresenter.start();
+  }
 
-    private void initializeViews() {
-        this.signInView = (ISignInContracts.View) fragmentManager.findFragmentById(R.id.fragment_sign_in);
-    }
+  private void initializeViews() {
+    this.signInView = (ISignInContracts.View) fragmentManager.findFragmentById(R.id.fragment_sign_in);
+  }
 
-    private void setup() {
-        signInPresenter.setView(signInView);
-        signInView.setPresenter(signInPresenter);
-    }
+  private void setup() {
+    signInPresenter.setView(signInView);
+    signInView.setPresenter(signInPresenter);
+  }
 
-    private void injectMembers() {
-        ((RMWITApplication) this.getApplication())
-                .getComponent()
-                .getActivityComponent(new ActivityModule(this, this.getSupportFragmentManager()))
-                .inject(this);
-    }
+  private void injectMembers() {
+    ((RMWITApplication) this.getApplication())
+        .getComponent()
+        .getActivityComponent(new ActivityModule(this, this.getSupportFragmentManager()))
+        .inject(this);
+  }
 }

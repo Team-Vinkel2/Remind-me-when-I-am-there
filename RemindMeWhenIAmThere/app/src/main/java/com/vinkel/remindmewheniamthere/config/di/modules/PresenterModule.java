@@ -38,8 +38,8 @@ public class PresenterModule {
 
   @Inject
   @Provides
-  ISignInContracts.Presenter provideSignInPresenter() {
-    return new SignInPresenter();
+  ISignInContracts.Presenter provideSignInPresenter(IUserData userData, IUserFactory factory) {
+    return new SignInPresenter(userData, factory);
   }
 
   @Inject
