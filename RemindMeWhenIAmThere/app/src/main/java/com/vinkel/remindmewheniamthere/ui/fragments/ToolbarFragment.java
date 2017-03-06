@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
@@ -29,14 +28,12 @@ import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawer;
 import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawerItem;
 import com.vinkel.remindmewheniamthere.ui.components.drawer.base.IDrawerItemFactory;
 import com.vinkel.remindmewheniamthere.ui.fragments.base.IToolbar;
-import com.vinkel.remindmewheniamthere.utils.UserSession;
 import com.vinkel.remindmewheniamthere.utils.base.IUserSession;
 import com.vinkel.remindmewheniamthere.views.add_reminder.AddReminderActivity;
 import com.vinkel.remindmewheniamthere.views.home.HomeActivity;
 import com.vinkel.remindmewheniamthere.views.settings.SettingsActivity;
 import com.vinkel.remindmewheniamthere.views.sign_in.SignInActivity;
 import com.vinkel.remindmewheniamthere.views.sign_up.SignUpActivity;
-
 import javax.inject.Inject;
 
 public class ToolbarFragment extends Fragment implements IToolbar {
@@ -104,7 +101,7 @@ public class ToolbarFragment extends Fragment implements IToolbar {
     createDrawerBuilder();
 
     final Intent homeIntent = intentFactory.getIntentWithSetToFrontFlag(HomeActivity.class);
-    final Intent homeIntentWithoutFlag = intentFactory.getIntent(HomeActivity.class);
+    final Intent homeIntentNoAnimation = intentFactory.getIntentWithNoAnimatedTransitionFlag(HomeActivity.class);
     final Intent signUpIntent = intentFactory.getIntentWithSetToFrontFlag(SignUpActivity.class);
     final Intent signInIntent = intentFactory.getIntentWithSetToFrontFlag(SignInActivity.class);
     final Intent addReminderIntent = intentFactory.getIntentWithSetToFrontFlag(AddReminderActivity.class);
@@ -177,7 +174,8 @@ public class ToolbarFragment extends Fragment implements IToolbar {
                   break;
                 case 6:
                   session.clearSession();
-                  startActivity(homeIntentWithoutFlag);
+                  startActivity(homeIntentNoAnimation);
+                  getActivity().finish();
                   break;
               }
 

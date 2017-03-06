@@ -23,7 +23,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBIAMVNzg6RII-tAdmUrBYJvMCscOqWVo0"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,18 +32,20 @@
         </activity>
         <activity
             android:name=".views.intro.IntroActivity"
+            android:screenOrientation="portrait"
             android:label="@string/define_appintro"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-        <activity android:name=".views.home.HomeActivity" />
-        <activity android:name=".views.sign_up.SignUpActivity" />
-        <activity android:name=".views.sign_in.SignInActivity" />
-        <activity android:name=".views.settings.SettingsActivity" />
-        <activity android:name=".views.reminder_poup.ReminderPopupActivity" />
-        <activity android:name=".views.add_reminder.AddReminderActivity"/>
+        <activity android:name=".views.home.HomeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".views.sign_up.SignUpActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".views.sign_in.SignInActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".views.settings.SettingsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".views.reminder_poup.ReminderPopupActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".views.add_reminder.AddReminderActivity" android:screenOrientation="portrait"/>
 
         <activity
             android:name="com.schibstedspain.leku.LocationPickerActivity"
             android:label="@string/title_activity_location_picker"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".MainActivity">
