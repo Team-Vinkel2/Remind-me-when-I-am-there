@@ -14,19 +14,20 @@ import com.vinkel.remindmewheniamthere.views.sign_in.base.ISignInContracts;
 
 public class SignInView extends Fragment implements ISignInContracts.View {
 
-    private IPresenter<ISignInContracts.View> presenter;
+  private IPresenter<ISignInContracts.View> presenter;
 
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup contrainer, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign_in, contrainer, false);
-        prepareView(view);
-        return view;
-    }
-    @Override
-    public void setPresenter(ISignInContracts.Presenter presenter) {
+  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup contrainer, @Nullable Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_sign_in, contrainer, false);
+    prepareView(view);
+    return view;
+  }
 
-    }
+  @Override
+  public void setPresenter(ISignInContracts.Presenter presenter) {
 
-    public void prepareView(View view) {
+  }
 
-    }
+  public void prepareView(View view) {
+
+  }
 }
