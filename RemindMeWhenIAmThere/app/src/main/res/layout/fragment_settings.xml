@@ -4,4 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notification Volume"
+        android:textSize="24dp"/>
+
+    <android.support.v7.widget.AppCompatSeekBar
+        android:id="@+id/volume_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_select_ringtone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Reminder Ringtone"/>
+
+    <TextView
+        android:id="@+id/selected_ringtone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Current Selected Ringtone is:"/>
+
+
 </LinearLayout>

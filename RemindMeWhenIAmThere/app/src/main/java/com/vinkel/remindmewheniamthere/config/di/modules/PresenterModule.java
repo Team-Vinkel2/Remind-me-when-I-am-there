@@ -51,7 +51,7 @@ public class PresenterModule {
 
   @Inject
   @Provides
-  ISettingsContracts.Presenter provideSettingsPresenter() {
-    return new SettingsPresenter();
+  ISettingsContracts.Presenter provideSettingsPresenter(IApplicationSettingsManager applicationSettingsManager) {
+    return new SettingsPresenter(applicationSettingsManager);
   }
 }

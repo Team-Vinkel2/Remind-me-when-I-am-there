@@ -6,12 +6,15 @@ import com.vinkel.remindmewheniamthere.views.base.IView;
 
 public interface ISettingsContracts {
 
-    interface  View extends IView<Presenter> {
+  interface View extends IView<Presenter> {
+    void setMaxVolume(int maxVolume);
 
-    }
+    void setCurrentVolume(int curVolume);
 
-    interface Presenter extends IPresenter<View> {
+  }
 
-    }
+  interface Presenter extends IPresenter<View> {
+    void saveAudioVolume(int volume);
+  }
 
 }
