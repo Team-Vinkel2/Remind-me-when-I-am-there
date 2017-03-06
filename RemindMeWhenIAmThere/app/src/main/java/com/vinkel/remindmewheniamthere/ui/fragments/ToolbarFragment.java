@@ -99,11 +99,11 @@ public class ToolbarFragment extends Fragment implements IToolbar {
   public void setNavigationDrawer(@LayoutRes long selectedItem) {
     createDrawerBuilder();
 
-    final Intent homeIntent = intentFactory.getIntent(HomeActivity.class);
-    final Intent signUpIntent = intentFactory.getIntent(SignUpActivity.class);
-    final Intent signInIntent = intentFactory.getIntent(SignInActivity.class);
-    final Intent addReminderIntent = intentFactory.getIntent(AddReminderActivity.class);
-    final Intent settingsIntent = intentFactory.getIntent(SettingsActivity.class);
+    final Intent homeIntent = intentFactory.getIntentWithSetToFrontFlag(HomeActivity.class);
+    final Intent signUpIntent = intentFactory.getIntentWithSetToFrontFlag(SignUpActivity.class);
+    final Intent signInIntent = intentFactory.getIntentWithSetToFrontFlag(SignInActivity.class);
+    final Intent addReminderIntent = intentFactory.getIntentWithSetToFrontFlag(AddReminderActivity.class);
+    final Intent settingsIntent = intentFactory.getIntentWithSetToFrontFlag(SettingsActivity.class);
 
     //Session
 
